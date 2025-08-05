@@ -28,7 +28,7 @@ const Navbar = () => {
             <Link to="/about" className="nav-link" onClick={handleClose}>About</Link>
           </li>
           <li className="nav-item">
-            <a href="#programs" className="nav-link" onClick={handleClose}>Programs</a>
+            <Link to="/news" className="nav-link" onClick={handleClose}>News</Link>
           </li>
           <li className="nav-item">
             <Link to="/contact" className="nav-link" onClick={handleClose}>Contact</Link>
