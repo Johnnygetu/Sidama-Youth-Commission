@@ -1,5 +1,13 @@
 <?php
 header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(204);
+    exit();
+}
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode([
@@ -17,7 +25,7 @@ try {
     if (empty($input['content']) || strlen($input['content']) < 10) throw new Exception('Content is required and must be at least 10 characters long');
     $author = isset($input['author']) && strlen($input['author']) >= 2 ? $input['author'] : 'Anonymous';
     $image_url = $input['image_url'] ?? null;
-    $pdo = new PDO('mysql:host=localhost;dbname=sidama_youth_db;charset=utf8mb4', 'root', '');
+    $pdo = new PDO('mysql:host=eltechsolutions-et.com;dbname=eltechev_sidamaYouthComission;charset=utf8mb4', 'eltechev_syc', 'Qwertyuiop123');
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $stmt = $pdo->prepare('INSERT INTO news (title, content, author, image_url, created_at) VALUES (?, ?, ?, ?, NOW())');
     $stmt->execute([$input['title'], $input['content'], $author, $image_url]);

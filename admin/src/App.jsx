@@ -3,6 +3,7 @@ import "./App.css";
 import MessagesPage from "./pages/MessagesPage";
 import NewsPage from "./pages/NewsPage";
 import AddNewsPage from "./pages/AddNewsPage";
+import EditNewsPage from "./pages/EditNewsPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/messages" element={<MessagesPage />} />
           <Route path="/news" element={<NewsPage />} />
           <Route path="/news/add" element={<AddNewsPage />} />
+          <Route path="/news/edit/:id" element={<EditNewsPage />} />
           <Route path="*" element={<MessagesPage />} />
         </Routes>
       </main>
