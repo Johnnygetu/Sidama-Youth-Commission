@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
-import { Navbar, Footer, ContactHero, ContactForm } from '../components';
+import { Navbar, Footer, ContactForm } from '../components';
 import './ContactPage.css';
 import logoImage from '/images/mekerbet-logo.jpg';
 
 const ContactPage = () => {
-  const heroRef = useRef(null);
+  const headerRef = useRef(null);
   const contactFormRef = useRef(null);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const ContactPage = () => {
     }, observerOptions);
 
     const elementsToObserve = [
-      heroRef.current,
+      headerRef.current,
       contactFormRef.current
     ].filter(Boolean);
 
@@ -44,7 +44,20 @@ const ContactPage = () => {
   return (
     <div className="contact-page">
       <Navbar />
-      <ContactHero logoImage={logoImage} heroRef={heroRef} />
+      
+      {/* Header Section */}
+      <section className="contact-header" ref={headerRef}>
+        <div className="container">
+          <div className="header-content">
+            <img src={logoImage} alt="Sidama Youth Commission" className="header-logo" />
+            <h1 className="header-title">Contact Us</h1>
+            <p className="header-subtitle">
+              We would love to hear from you! Reach out for questions, partnership opportunities, or to get involved in our community initiatives.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <ContactForm contactFormRef={contactFormRef} />
       <Footer />
     </div>
