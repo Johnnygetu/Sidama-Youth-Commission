@@ -50,13 +50,6 @@ const About = ({ logoImage, aboutRef, statsRefs }) => (
             className="stat-item" 
             ref={el => statsRefs && (statsRefs[2] = el)}
           >
-            <h3>2025-2029</h3>
-            <p>Visionary Strategic Plan</p>
-          </div>
-          <div 
-            className="stat-item" 
-            ref={el => statsRefs && (statsRefs[3] = el)}
-          >
             <h3>100%</h3>
             <p>Inclusive & Diverse</p>
           </div>

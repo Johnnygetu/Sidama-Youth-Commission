@@ -1,16 +1,8 @@
 /* Story Section */
 .story-section {
-  padding: 120px 0;
-  background: linear-gradient(135deg, rgba(26, 117, 196, 0.9) 0%, rgba(15, 74, 138, 0.85) 50%, rgba(255, 146, 25, 0.8) 100%);
-  background-image: 
-    linear-gradient(135deg, rgba(26, 117, 196, 0.9) 0%, rgba(15, 74, 138, 0.85) 50%, rgba(255, 146, 25, 0.8) 100%),
-    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="geometric" width="60" height="60" patternUnits="userSpaceOnUse"><polygon points="30,0 60,15 60,45 30,60 0,45 0,15" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="1200" height="800" fill="url(%23geometric)"/></svg>');
-  background-size: cover, 60px 60px;
-  background-position: center, center;
-  background-attachment: fixed;
+  padding: 80px 0;
+  background-color: #ffffff;
   position: relative;
-  overflow: hidden;
-  color: white;
 }
 
 .story-section::before {
@@ -19,38 +11,29 @@
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 70% 80%, rgba(255, 146, 25, 0.1) 0%, transparent 50%);
-  pointer-events: none;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  position: relative;
-  z-index: 2;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #e1e5e9 50%, transparent 100%);
 }
 
 .story-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   gap: 4rem;
-  align-items: start;
+  align-items: center;
+  position: relative;
 }
 
 .story-text {
-  position: relative;
+  animation: slideInLeft 0.8s ease-out;
 }
 
 .story-text h2 {
-  font-size: 3.5rem;
-  font-weight: 900;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
   margin-bottom: 2rem;
-  color: #ffffff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
   position: relative;
+  letter-spacing: -0.02em;
 }
 
 .story-text h2::after {
@@ -58,148 +41,141 @@
   position: absolute;
   bottom: -10px;
   left: 0;
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(135deg, #ffffff, #fbbf24);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(135deg, #1a75c4 0%, #ff9219 100%);
   border-radius: 2px;
-  animation: glow 2s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-  from {
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-  }
-  to {
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(251, 191, 36, 0.6);
-  }
 }
 
 .story-text p {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  color: #666;
   line-height: 1.8;
   margin-bottom: 1.5rem;
-  color: rgba(255, 255, 255, 0.95);
-  font-weight: 400;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.story-text p:last-child {
-  margin-bottom: 0;
+  margin: 0 0 1.5rem 0;
 }
 
 .story-image {
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: slideInRight 0.8s ease-out;
 }
 
-.image-container {
-  width: 100%;
-  height: 600px;
+.image-placeholder {
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, #1a75c4 0%, #ff9219 100%);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
-  border-radius: 25px;
   overflow: hidden;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
 }
 
-.group-photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transition: transform 0.4s ease;
+.image-placeholder::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #ff9219 0%, #1a75c4 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.image-container:hover .group-photo {
+.image-placeholder:hover {
   transform: scale(1.05);
+  box-shadow: 0 20px 40px rgba(26, 117, 196, 0.3);
 }
 
-/* Full-width text section below image */
-.full-width-text {
-  grid-column: 1 / -1;
-  margin-top: 0;
-  text-align: left;
+.image-placeholder:hover::before {
+  opacity: 1;
 }
 
-.full-width-text p {
-  font-size: 1.3rem;
-  line-height: 1.9;
-  margin-bottom: 2rem;
-  color: rgba(255, 255, 255, 0.95);
-  font-weight: 400;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  max-width: 1000px;
-  margin-left: 0;
-  margin-right: auto;
+.placeholder-content {
+  text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
-.full-width-text p:last-child {
-  margin-bottom: 0;
+.placeholder-content span {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.image-placeholder:hover .placeholder-content span {
+  transform: scale(1.1);
+}
+
+.placeholder-content p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Animation keyframes */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .story-section {
-    padding: 80px 0;
-    background-attachment: scroll;
-  }
-  
   .story-content {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    text-align: center;
+    gap: 2rem;
   }
   
-  .story-text h2 {
-    font-size: 2.8rem;
-  }
-  
-  .story-text p {
-    font-size: 1.1rem;
-  }
-  
-  .image-container {
-    height: 450px;
-    min-height: 450px;
-  }
-  
-  .full-width-text {
-    margin-top: 0;
-  }
-  
-  .full-width-text p {
-    font-size: 1.1rem;
-    padding: 0 1rem;
-  }
-}
-
-@media (max-width: 480px) {
   .story-section {
     padding: 60px 0;
   }
   
-  .container {
-    padding: 0 1rem;
+  .story-text h2::after {
+    left: 50%;
+    transform: translateX(-50%);
   }
-  
+}
+
+@media (max-width: 480px) {
   .story-text h2 {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
   
-  .story-text p {
-    font-size: 1rem;
+  .image-placeholder {
+    width: 250px;
+    height: 250px;
   }
   
-  .image-container {
-    height: 350px;
-    min-height: 350px;
+  .placeholder-content span {
+    font-size: 3rem;
   }
   
-  .full-width-text {
-    margin-top: 0;
-  }
-  
-  .full-width-text p {
-    font-size: 1rem;
-    padding: 0 0.5rem;
+  .placeholder-content p {
+    font-size: 1.1rem;
   }
 } 
