@@ -237,45 +237,45 @@ const NewsPage = () => {
           )}
           
           {!loading && !error && newsArticles.length > 0 && (
-            <div className="news-grid">
-              {newsArticles.slice(0, newsToShow).map((article) => (
+          <div className="news-grid">
+            {newsArticles.slice(0, newsToShow).map((article) => (
                 <article key={article.id} className="news-card">
-                  <div className="news-image" style={{ backgroundImage: `url(${article.image})` }}>
-                    <div className="news-date">
-                      <span className="day">{article.day}</span>
-                      <span className="month">{article.month}</span>
-                    </div>
+                <div className="news-image" style={{ backgroundImage: `url(${article.image})` }}>
+                  <div className="news-date">
+                    <span className="day">{article.day}</span>
+                    <span className="month">{article.month}</span>
                   </div>
-                  <div className="news-content">
-                    <h3>{article.title}</h3>
-                    <p className="news-meta">By {article.author} • {article.category}</p>
-                    <p>
+                </div>
+                <div className="news-content">
+                  <h3>{article.title}</h3>
+                  <p className="news-meta">By {article.author} • {article.category}</p>
+                  <p>
                       {article.fullContent[0] ? article.fullContent[0].substring(0, 150) + '...' : 'No content available...'}
-                    </p>
-                    <button 
-                      className="read-more" 
-                      onClick={() => setSelectedArticle(article)}
-                    >
-                      Read More →
-                    </button>
-                  </div>
-                </article>
-              ))}
-              {newsArticles.length > newsToShow && (
-                <div className="show-more-container">
-                  <button className="show-more-btn" onClick={() => setNewsToShow(newsArticles.length)}>
-                    Show More News
+                  </p>
+                                    <button 
+                    className="read-more" 
+                    onClick={() => setSelectedArticle(article)}
+                  >
+                    Read More →
                   </button>
                 </div>
-              )}
-              {newsToShow === newsArticles.length && newsArticles.length > 6 && (
-                <div className="show-more-container">
-                  <button className="show-more-btn" onClick={() => setNewsToShow(6)}>
-                    Show Less
-                  </button>
-                </div>
-              )}
-            </div>
+              </article>
+            ))}
+            {newsArticles.length > newsToShow && (
+              <div className="show-more-container">
+                <button className="show-more-btn" onClick={() => setNewsToShow(newsArticles.length)}>
+                  Show More News
+                </button>
+              </div>
+            )}
+            {newsToShow === newsArticles.length && newsArticles.length > 6 && (
+              <div className="show-more-container">
+                <button className="show-more-btn" onClick={() => setNewsToShow(6)}>
+                  Show Less
+                </button>
+              </div>
+            )}
+          </div>
           )}
         </div>
       </section>

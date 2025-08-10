@@ -1,16 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../config/api";
 
 function AddNewsPage() {
   const [form, setForm] = useState({
     title: "",
-    day: "",
-    month: "",
     author: "",
-    category: "",
-    image: "",
+    image_url: "",
     content: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
   const formRef = useRef(null);
 
@@ -24,10 +23,27 @@ function AddNewsPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would add the news to the backend or state
-    navigate("/news");
+    setIsSubmitting(true);
+    try {
+      const response = await fetch(`${API_BASE_URL}/news/createNews.php`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const result = await response.json();
+      if (result.success) {
+        navigate("/news");
+      } else {
+        alert(result.message || "Failed to create news");
+      }
+    } catch (err) {
+      alert("Failed to connect to the server");
+      console.error("Error creating news:", err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -42,52 +58,38 @@ function AddNewsPage() {
           value={form.title}
           onChange={handleChange}
           required
+          disabled={isSubmitting}
         />
-        <div style={{ display: "flex", gap: "1rem" }}>
-          <input
-            name="day"
-            placeholder="Day (e.g. 15)"
-            value={form.day}
-            onChange={handleChange}
-            required
-            style={{ width: 80 }}
-          />
-          <input
-            name="month"
-            placeholder="Month (e.g. Dec)"
-            value={form.month}
-            onChange={handleChange}
-            required
-            style={{ width: 80 }}
-          />
-        </div>
         <input
           name="author"
           placeholder="Author"
           value={form.author}
           onChange={handleChange}
           required
+          disabled={isSubmitting}
         />
         <input
-          name="category"
-          placeholder="Category"
-          value={form.category}
-          onChange={handleChange}
-          required
-        />
-        <input
-          name="image"
+          name="image_url"
           placeholder="Image URL"
-          value={form.image}
+          value={form.image_url}
           onChange={handleChange}
-          required
+          disabled={isSubmitting}
         />
-        <input
+        <textarea
           name="content"
           placeholder="Content"
           value={form.content}
           onChange={handleChange}
           required
+          disabled={isSubmitting}
+          style={{
+            minHeight: "150px",
+            resize: "vertical",
+            padding: "0.5rem",
+            border: "1px solid #ddd",
+            borderRadius: "4px",
+            fontFamily: "inherit",
+          }}
         />
         <div
           style={{ display: "flex", justifyContent: "flex-end", gap: "1rem" }}>
@@ -105,8 +107,15 @@ function AddNewsPage() {
             }}>
             Cancel
           </button>
-          <button type="submit" className="premium-btn">
-            Add
+          <button
+            type="submit"
+            className="premium-btn"
+            disabled={isSubmitting}
+            style={{
+              opacity: isSubmitting ? 0.6 : 1,
+              cursor: isSubmitting ? "not-allowed" : "pointer",
+            }}>
+            {isSubmitting ? "Creating..." : "Add"}
           </button>
         </div>
       </form>
