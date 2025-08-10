@@ -47,45 +47,45 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 try {
     logMessage("📝 Server: Processing message creation request");
-    
+
     $input = json_decode(file_get_contents('php://input'), true);
     logMessage("📄 Server: Raw input received", $input);
-    
+
     if (!$input) {
         logMessage("❌ Server: Invalid JSON input");
         throw new Exception('Invalid JSON input');
     }
-    
+
     logMessage("✅ Server: JSON input parsed successfully");
-    
+
     // Validation logging
     if (empty($input['name']) || strlen($input['name']) < 2) {
         logMessage("❌ Server: Name validation failed", ['name' => $input['name'] ?? 'empty']);
         throw new Exception('Name is required and must be at least 2 characters long');
     }
-    
+
     if (empty($input['email']) || !filter_var($input['email'], FILTER_VALIDATE_EMAIL)) {
         logMessage("❌ Server: Email validation failed", ['email' => $input['email'] ?? 'empty']);
         throw new Exception('Valid email address is required');
     }
-    
+
     if (empty($input['subject']) || strlen($input['subject']) < 3) {
         logMessage("❌ Server: Subject validation failed", ['subject' => $input['subject'] ?? 'empty']);
         throw new Exception('Subject is required and must be at least 3 characters long');
     }
-    
+
     if (empty($input['message']) || strlen($input['message']) < 10) {
         logMessage("❌ Server: Message validation failed", ['messageLength' => strlen($input['message'] ?? '')]);
         throw new Exception('Message is required and must be at least 10 characters long');
     }
-    
+
     logMessage("✅ Server: All validations passed");
-    
+
     logMessage("🔗 Server: Connecting to database");
     $pdo = new PDO('mysql:host=eltechsolutions-et.com;dbname=eltechev_sidamaYouthComission;charset=utf8mb4', 'eltechev_syc', 'Qwertyuiop123');
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     logMessage("✅ Server: Database connection established");
-    
+
     logMessage("💾 Server: Inserting message into database");
     $stmt = $pdo->prepare('INSERT INTO contact_messages (name, email, subject, message, status, created_at) VALUES (?, ?, ?, ?, ?, NOW())');
     $stmt->execute([
@@ -97,7 +97,7 @@ try {
     ]);
     $id = $pdo->lastInsertId();
     logMessage("✅ Server: Message inserted successfully", ['id' => $id]);
-    
+
     $responseData = [
         'id' => $id,
         'name' => $input['name'],
@@ -106,14 +106,13 @@ try {
         'message' => $input['message'],
         'status' => 'unread'
     ];
-    
+
     logMessage("📤 Server: Sending success response", $responseData);
     echo json_encode([
         'success' => true,
         'message' => 'Message sent successfully',
         'data' => $responseData
     ]);
-    
 } catch (Exception $e) {
     logMessage("💥 Server: Exception occurred", ['error' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
     echo json_encode([

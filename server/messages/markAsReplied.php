@@ -96,7 +96,7 @@ try {
         'subject' => $message['subject']
     ]);
 
-    // Update message status
+    // Update message status to 'replied' first
     logReply("🔄 Server: Updating message status to 'replied'");
     $pdo->prepare('UPDATE contact_messages SET status = ?, updated_at = NOW() WHERE id = ?')->execute(['replied', $input['id']]);
     logReply("✅ Server: Message status updated successfully");
@@ -138,14 +138,33 @@ try {
     }
 
     if ($emailSent) {
-        logReply("✅ Server: Reply process completed successfully");
+        // Delete the message from database after successful email sending
+        logReply("🗑️ Server: Deleting message from database after successful reply");
+        try {
+            $deleteStmt = $pdo->prepare('DELETE FROM contact_messages WHERE id = ?');
+            $deleteStmt->execute([$input['id']]);
+            $deletedRows = $deleteStmt->rowCount();
+            
+            if ($deletedRows > 0) {
+                logReply("✅ Server: Message deleted successfully from database");
+            } else {
+                logReply("⚠️ Server: Message deletion failed - no rows affected");
+            }
+        } catch (Exception $e) {
+            logReply("💥 Server: Message deletion exception", [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+        }
+        
+        logReply("✅ Server: Reply process completed successfully - message deleted");
         echo json_encode([
             'success' => true,
-            'message' => 'Reply sent successfully and message marked as replied',
+            'message' => 'Reply sent successfully and message deleted',
             'data' => ['id' => $input['id']]
         ]);
     } else {
-        logReply("⚠️ Server: Message marked as replied but email failed");
+        logReply("⚠️ Server: Message marked as replied but email failed - keeping message in database");
         echo json_encode([
             'success' => false,
             'message' => 'Message marked as replied but email could not be sent',

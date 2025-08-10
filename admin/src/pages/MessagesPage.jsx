@@ -105,12 +105,12 @@ function MessagesPage() {
           No messages found.
         </div>
       ) : (
-        <div style={{ display: "grid", gap: "1.5rem", width: "100%" }}>
+      <div style={{ display: "grid", gap: "1.5rem", width: "100%" }}>
           {messages.map((msg, idx) => (
-            <div
-              key={msg.id}
-              className="news-card"
-              ref={(el) => (cardRefs.current[idx] = el)}
+          <div
+            key={msg.id}
+            className="news-card"
+            ref={(el) => (cardRefs.current[idx] = el)}
               onClick={() => handleMessageClick(msg.id)}
               style={{
                 width: "100%",
@@ -131,7 +131,7 @@ function MessagesPage() {
                 e.currentTarget.style.transform = "translateY(0)";
                 e.currentTarget.style.boxShadow = "none";
               }}>
-              <div className="news-content" style={{ flex: 1 }}>
+            <div className="news-content" style={{ flex: 1 }}>
                 <div
                   style={{
                     display: "flex",
@@ -139,7 +139,7 @@ function MessagesPage() {
                     alignItems: "flex-start",
                     marginBottom: "0.5rem",
                   }}>
-                  <h3 style={{ margin: 0, color: "#388e3c" }}>{msg.sender}</h3>
+              <h3 style={{ margin: 0, color: "#388e3c" }}>{msg.sender}</h3>
                   <span
                     style={{
                       fontSize: "0.75rem",
@@ -170,7 +170,7 @@ function MessagesPage() {
                   }}>
                   <strong>Subject:</strong> {msg.subject} •{" "}
                   <strong>Email:</strong> {msg.email} • {msg.date}
-                </div>
+              </div>
                 <div
                   style={{
                     fontSize: "0.875rem",
@@ -179,10 +179,10 @@ function MessagesPage() {
                   }}>
                   Click to view full message
                 </div>
-              </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
+      </div>
       )}
     </div>
   );

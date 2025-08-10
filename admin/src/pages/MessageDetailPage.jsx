@@ -60,7 +60,7 @@ function MessageDetailPage() {
       toName: message.sender,
       subject: message.subject,
       replyLength: replyText.length,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
 
     setIsReplying(true);
@@ -79,17 +79,21 @@ function MessageDetailPage() {
       );
 
       console.log("📡 Admin: Response status:", response.status);
-      console.log("📡 Admin: Response headers:", Object.fromEntries(response.headers.entries()));
+      console.log(
+        "📡 Admin: Response headers:",
+        Object.fromEntries(response.headers.entries())
+      );
 
       const result = await response.json();
       console.log("📄 Admin: Response data:", result);
 
       if (result.success) {
         console.log("✅ Admin: Reply sent successfully!");
-        console.log("📊 Admin: Message status updated to 'replied'");
-        setMessage((prev) => ({ ...prev, status: "replied" }));
+        console.log("📊 Admin: Message deleted from database");
         setReplyText("");
-        alert("Reply sent successfully!");
+        alert("Reply sent successfully and message deleted!");
+        // Redirect back to messages list since the message is now deleted
+        navigate("/messages");
       } else {
         console.log("❌ Admin: Reply sending failed:", result.message);
         alert(result.message || "Failed to send reply");

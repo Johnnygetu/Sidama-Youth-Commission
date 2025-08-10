@@ -93,6 +93,8 @@ If something goes wrong:
 [2025-08-10 12:00:00] ✅ Server: Message found | Data: {...}
 [2025-08-10 12:00:00] 🔄 Server: Updating message status to 'replied'
 [2025-08-10 12:00:00] ✅ Server: Message status updated successfully
+[2025-08-10 12:00:00] 🗑️ Server: Deleting message from database after successful reply
+[2025-08-10 12:00:00] ✅ Server: Message deleted successfully from database
 ```
 
 #### Email Sending
@@ -193,7 +195,8 @@ grep "💥.*Mailer" server/logs/reply_sending.log
 2. Server processes reply → `reply_sending.log` shows validation
 3. Database update → Log shows status change
 4. Email sending → Mailer logs show SMTP process
-5. Success response → Admin console shows success
+5. Message deletion → Log shows successful deletion
+6. Success response → Admin console shows success and redirects
 
 #### Error Patterns
 
