@@ -5,34 +5,48 @@ const Impact = ({ impactRef }) => {
   return (
     <section className="impact-section" ref={impactRef}>
       <div className="container">
-        <h2 className="section-title">Our Impact</h2>
+        <h2 className="section-title">Our Strategic Goals & Targets</h2>
         <div className="impact-grid">
           <div className="impact-stat">
-            <div className="stat-number">500+</div>
-            <div className="stat-label">Youth Empowered</div>
+            <div className="stat-number">2.2M+</div>
+            <div className="stat-label">Youth Represented</div>
             <div className="stat-description">
-              Young people who have participated in our programs and gained valuable skills
+              All youth in Sidama Region without discrimination based on any grounds
             </div>
           </div>
           <div className="impact-stat">
-            <div className="stat-number">15</div>
-            <div className="stat-label">Active Programs</div>
+            <div className="stat-number">150%</div>
+            <div className="stat-label">Membership Growth</div>
             <div className="stat-description">
-              Comprehensive programs covering education, skills training, and leadership
+              Target increase in active youth membership by 2029
             </div>
           </div>
           <div className="impact-stat">
-            <div className="stat-number">25</div>
-            <div className="stat-label">Community Partners</div>
+            <div className="stat-number">10,000</div>
+            <div className="stat-label">Youth Trained</div>
             <div className="stat-description">
-              Local organizations and institutions supporting our mission
+              Target number of youths trained in employability and entrepreneurship by 2029
             </div>
           </div>
           <div className="impact-stat">
-            <div className="stat-number">95%</div>
-            <div className="stat-label">Success Rate</div>
+            <div className="stat-number">3,000+</div>
+            <div className="stat-label">Income Generation</div>
             <div className="stat-description">
-              Participants who report improved skills and confidence after our programs
+              Target youth engaged in income-generating activities by 2029
+            </div>
+          </div>
+          <div className="impact-stat">
+            <div className="stat-number">50+</div>
+            <div className="stat-label">Environmental Initiatives</div>
+            <div className="stat-description">
+              Community environmental initiatives to be executed by 2029
+            </div>
+          </div>
+          <div className="impact-stat">
+            <div className="stat-number">40%</div>
+            <div className="stat-label">Leadership Diversity</div>
+            <div className="stat-description">
+              Target representation of women and persons with disabilities in leadership by 2028
             </div>
           </div>
         </div>

@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Navbar, Footer } from '../components';
+import { Navbar, Footer, PageHeader } from '../components';
 import NewsDetail from '../components/NewsDetail/NewsDetail';
 import './NewsPage.css';
 import logoImage from '/images/mekerbet-logo.jpg';
 
 const NewsPage = () => {
+  const headerRef = useRef(null);
   const newsRef = useRef(null);
   const eventsRef = useRef(null);
   const [selectedArticle, setSelectedArticle] = useState(null);
@@ -295,6 +296,7 @@ const NewsPage = () => {
     }, observerOptions);
 
     const elementsToObserve = [
+      headerRef.current,
       newsRef.current,
       eventsRef.current
     ].filter(Boolean);
@@ -318,19 +320,12 @@ const NewsPage = () => {
     <div className="news-page">
       <Navbar />
       
-      {/* Header Section */}
-      <section className="news-header">
-        <div className="container">
-          <div className="header-content">
-            <img src={logoImage} alt="Sidama Youth Commission" className="header-logo" />
-            <h1 className="header-title">Latest News & Updates</h1>
-            <p className="header-subtitle">
-              Stay informed about the latest developments, events, and achievements of the Sidama Youth Commission. 
-              Discover how we're making a difference in our community.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHeader 
+        title="Latest News & Updates"
+        subtitle="Stay informed about the latest developments, events, and achievements of the Sidama Youth Commission. Discover how we're making a difference in our community."
+        logoImage={logoImage}
+        headerRef={headerRef}
+      />
 
       {/* Latest News Section */}
       <section className="news" id="news" ref={newsRef}>
