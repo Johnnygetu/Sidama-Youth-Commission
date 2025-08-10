@@ -1,6 +1,7 @@
 import { Routes, Route, NavLink } from "react-router-dom";
 import "./App.css";
 import MessagesPage from "./pages/MessagesPage";
+import MessageDetailPage from "./pages/MessageDetailPage";
 import NewsPage from "./pages/NewsPage";
 import AddNewsPage from "./pages/AddNewsPage";
 import EditNewsPage from "./pages/EditNewsPage";
@@ -23,6 +24,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/messages" element={<MessagesPage />} />
+          <Route path="/messages/:id" element={<MessageDetailPage />} />
           <Route path="/news" element={<NewsPage />} />
           <Route path="/news/add" element={<AddNewsPage />} />
           <Route path="/news/edit/:id" element={<EditNewsPage />} />

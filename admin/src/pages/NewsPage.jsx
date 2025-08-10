@@ -147,12 +147,12 @@ function NewsPage() {
           No news articles found.
         </div>
       ) : (
-        <div style={{ display: "grid", gap: "1.5rem", width: "100%" }}>
-          {news.map((article, idx) => (
-            <div
-              key={article.id}
-              className="news-card"
-              ref={(el) => (cardRefs.current[idx] = el)}
+      <div style={{ display: "grid", gap: "1.5rem", width: "100%" }}>
+        {news.map((article, idx) => (
+          <div
+            key={article.id}
+            className="news-card"
+            ref={(el) => (cardRefs.current[idx] = el)}
               style={{
                 width: "100%",
                 cursor: "pointer",
@@ -168,17 +168,17 @@ function NewsPage() {
                 e.currentTarget.style.transform = "translateY(0)";
                 e.currentTarget.style.boxShadow = "none";
               }}>
-              <div
-                className="news-image"
-                style={{ backgroundImage: `url(${article.image})` }}></div>
-              <div className="news-content" style={{ flex: 1 }}>
-                <h3>{article.title}</h3>
-                <div className="news-meta">
-                  {article.day} {article.month} • {article.author} •{" "}
-                  {article.category}
-                </div>
-                <p style={{ margin: 0 }}>{article.fullContent[0]}</p>
+            <div
+              className="news-image"
+              style={{ backgroundImage: `url(${article.image})` }}></div>
+            <div className="news-content" style={{ flex: 1 }}>
+              <h3>{article.title}</h3>
+              <div className="news-meta">
+                {article.day} {article.month} • {article.author} •{" "}
+                {article.category}
               </div>
+              <p style={{ margin: 0 }}>{article.fullContent[0]}</p>
+            </div>
               <button
                 onClick={(e) => handleDelete(article.id, e)}
                 disabled={deletingId === article.id}
@@ -201,9 +201,9 @@ function NewsPage() {
               >
                 {deletingId === article.id ? "..." : "Delete"}
               </button>
-            </div>
-          ))}
-        </div>
+          </div>
+        ))}
+      </div>
       )}
     </div>
   );
