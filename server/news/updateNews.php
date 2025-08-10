@@ -52,9 +52,8 @@ try {
         $fields[] = 'image_url = ?';
         $params[] = $input['image_url'];
     }
-    $fields[] = 'updated_at = NOW()';
     $params[] = $input['id'];
-    $sql = 'UPDATE news SET ' . implode(', ', $fields) . ' WHERE id = ?';
+    $sql = 'UPDATE news SET ' . implode(', ', $fields) . ', updated_at = NOW() WHERE id = ?';
     $pdo->prepare($sql)->execute($params);
     echo json_encode([
         'success' => true,

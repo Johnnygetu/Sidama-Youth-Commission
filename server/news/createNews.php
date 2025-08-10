@@ -27,7 +27,7 @@ try {
     $image_url = $input['image_url'] ?? null;
     $pdo = new PDO('mysql:host=eltechsolutions-et.com;dbname=eltechev_sidamaYouthComission;charset=utf8mb4', 'eltechev_syc', 'Qwertyuiop123');
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $pdo->prepare('INSERT INTO news (title, content, author, image_url, created_at) VALUES (?, ?, ?, ?, NOW())');
+    $stmt = $pdo->prepare('INSERT INTO news (title, content, author, image_url, created_at, updated_at) VALUES (?, ?, ?, ?, NOW(), NOW())');
     $stmt->execute([$input['title'], $input['content'], $author, $image_url]);
     $id = $pdo->lastInsertId();
     echo json_encode([
@@ -38,7 +38,9 @@ try {
             'title' => $input['title'],
             'content' => $input['content'],
             'author' => $author,
-            'image_url' => $image_url
+            'image_url' => $image_url,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
         ]
     ]);
 } catch (Exception $e) {

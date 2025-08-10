@@ -6,6 +6,7 @@ function NewsPage() {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [deletingId, setDeletingId] = useState(null);
   const navigate = useNavigate();
   const cardRefs = useRef([]);
 
@@ -52,6 +53,33 @@ function NewsPage() {
 
     fetchNews();
   }, []);
+
+  // Delete news function
+  const handleDelete = async (id, e) => {
+    e.stopPropagation(); // Prevent navigation to edit page
+    if (window.confirm('Are you sure you want to delete this news article?')) {
+      try {
+        setDeletingId(id);
+        const response = await fetch(`${API_BASE_URL}/news/deleteNews.php`, {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id }),
+        });
+        const result = await response.json();
+        if (result.success) {
+          // Remove the deleted news from the state
+          setNews(prevNews => prevNews.filter(article => article.id !== id));
+        } else {
+          alert(result.message || 'Failed to delete news');
+        }
+      } catch (err) {
+        alert('Failed to connect to the server');
+        console.error('Error deleting news:', err);
+      } finally {
+        setDeletingId(null);
+      }
+    }
+  };
 
   // Intersection observer for animations
   useEffect(() => {
@@ -129,6 +157,7 @@ function NewsPage() {
                 width: "100%",
                 cursor: "pointer",
                 transition: "transform 0.2s ease, box-shadow 0.2s ease",
+                position: "relative",
               }}
               onClick={() => navigate(`/news/edit/${article.id}`)}
               onMouseEnter={(e) => {
@@ -150,6 +179,28 @@ function NewsPage() {
                 </div>
                 <p style={{ margin: 0 }}>{article.fullContent[0]}</p>
               </div>
+              <button
+                onClick={(e) => handleDelete(article.id, e)}
+                disabled={deletingId === article.id}
+                style={{
+                  position: "absolute",
+                  top: "10px",
+                  right: "10px",
+                  background: "#dc3545",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: "4px",
+                  padding: "0.5rem 0.75rem",
+                  fontSize: "0.875rem",
+                  cursor: deletingId === article.id ? "not-allowed" : "pointer",
+                  opacity: deletingId === article.id ? 0.6 : 1,
+                  zIndex: 10,
+                  minWidth: "60px",
+                }}
+                title="Delete this news article"
+              >
+                {deletingId === article.id ? "..." : "Delete"}
+              </button>
             </div>
           ))}
         </div>
