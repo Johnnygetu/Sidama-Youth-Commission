@@ -10,35 +10,44 @@ const Team = ({ teamRef }) => {
           <div className="team-member">
             <div className="member-avatar">
               <div className="avatar-placeholder">👨‍💼</div>
+              <div className="avatar-overlay"></div>
             </div>
-            <h3>Abebe Kebede</h3>
-            <p className="member-role">Executive Director</p>
-            <p className="member-bio">
-              Leading our organization with over 15 years of experience in youth development 
-              and community engagement across the Sidama region.
-            </p>
+            <div className="member-info">
+              <h3>Abebe Kebede</h3>
+              <p className="member-role">Executive Director</p>
+              <p className="member-bio">
+                Leading our organization with over 15 years of experience in youth development 
+                and community engagement across the Sidama region.
+              </p>
+            </div>
           </div>
           <div className="team-member">
             <div className="member-avatar">
               <div className="avatar-placeholder">👩‍💼</div>
+              <div className="avatar-overlay"></div>
             </div>
-            <h3>Fatima Ahmed</h3>
-            <p className="member-role">Program Director</p>
-            <p className="member-bio">
-              Overseeing our educational programs and skills training initiatives 
-              to ensure maximum impact for our youth participants.
-            </p>
+            <div className="member-info">
+              <h3>Fatima Ahmed</h3>
+              <p className="member-role">Program Director</p>
+              <p className="member-bio">
+                Overseeing our educational programs and skills training initiatives 
+                to ensure maximum impact for our youth participants.
+              </p>
+            </div>
           </div>
           <div className="team-member">
             <div className="member-avatar">
               <div className="avatar-placeholder">👨‍🎓</div>
+              <div className="avatar-overlay"></div>
             </div>
-            <h3>Dawit Mengistu</h3>
-            <p className="member-role">Education Coordinator</p>
-            <p className="member-bio">
-              Managing our scholarship programs and academic support services 
-              to help students excel in their educational journey.
-            </p>
+            <div className="member-info">
+              <h3>Dawit Mengistu</h3>
+              <p className="member-role">Education Coordinator</p>
+              <p className="member-bio">
+                Managing our scholarship programs and academic support services 
+                to help students excel in their educational journey.
+              </p>
+            </div>
           </div>
         </div>
       </div>

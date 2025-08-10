@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Navbar, Footer, ContactForm } from '../components';
+import { Navbar, Footer, ContactForm, PageHeader } from '../components';
 import './ContactPage.css';
 import logoImage from '/images/mekerbet-logo.jpg';
 
@@ -45,18 +45,12 @@ const ContactPage = () => {
     <div className="contact-page">
       <Navbar />
       
-      {/* Header Section */}
-      <section className="contact-header" ref={headerRef}>
-        <div className="container">
-          <div className="header-content">
-            <img src={logoImage} alt="Sidama Youth Commission" className="header-logo" />
-            <h1 className="header-title">Contact Us</h1>
-            <p className="header-subtitle">
-              We would love to hear from you! Reach out for questions, partnership opportunities, or to get involved in our community initiatives.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHeader 
+        title="Contact Us"
+        subtitle="We would love to hear from you! Reach out for questions, partnership opportunities, or to get involved in our community initiatives."
+        logoImage={logoImage}
+        headerRef={headerRef}
+      />
 
       <ContactForm contactFormRef={contactFormRef} />
       <Footer />

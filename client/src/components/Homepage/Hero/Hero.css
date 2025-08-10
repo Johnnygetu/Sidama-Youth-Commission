@@ -4,6 +4,7 @@
   padding: 140px 0 100px;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   position: relative;
   overflow: hidden;
@@ -29,6 +30,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
+  margin-bottom: 4rem;
 }
 
 .hero-title {
@@ -54,6 +56,14 @@
 
 .hero-subtitle {
   font-size: 1.25rem;
+  color: #64748b;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  font-weight: 600;
+}
+
+.hero-description {
+  font-size: 1rem;
   color: #64748b;
   margin-bottom: 2rem;
   line-height: 1.6;
@@ -167,6 +177,139 @@
   font-weight: 600;
 }
 
+/* President's Message Section */
+.president-message {
+  width: 100%;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  padding: 3rem 0;
+  border-top: 1px solid #e2e8f0;
+}
+
+.president-message .container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.message-content {
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 3rem;
+  align-items: start;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.president-info {
+  text-align: center;
+}
+
+.president-photo {
+  margin-bottom: 2rem;
+}
+
+.photo-placeholder {
+  width: 140px;
+  height: 180px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  padding: 15px;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.photo-placeholder span {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.photo-placeholder p {
+  margin: 0;
+  opacity: 0.9;
+  line-height: 1.4;
+}
+
+.president-details h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #1a75c4 0%, #0f4a8a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+}
+
+.president-details h3 {
+  font-size: 1.25rem;
+  color: #ff9219;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.president-title {
+  font-size: 1.1rem;
+  color: #64748b;
+  font-weight: 600;
+  margin: 0;
+}
+
+.message-preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.message-text {
+  line-height: 1.8;
+  color: #374151;
+  flex-grow: 1;
+}
+
+.message-text p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.message-text p:last-child {
+  margin-bottom: 0;
+}
+
+.message-actions {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.message-actions .btn {
+  background: linear-gradient(135deg, #1a75c4 0%, #0f4a8a 100%);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(26, 117, 196, 0.3);
+}
+
+.message-actions .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(26, 117, 196, 0.4);
+}
+
 @media (max-width: 768px) {
   .hero-content {
     grid-template-columns: 1fr;
@@ -179,6 +322,22 @@
     width: 100%;
     max-width: 300px;
     height: 200px;
+  }
+  .message-content {
+    padding: 1.5rem;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 100%;
+  }
+  .president-details h2 {
+    font-size: 1.75rem;
+  }
+  .president-details h3 {
+    font-size: 1.25rem;
+  }
+  .photo-placeholder {
+    width: 120px;
+    height: 150px;
   }
 }
 
@@ -193,6 +352,12 @@
   .btn {
     width: 100%;
     max-width: 250px;
+  }
+  .message-content {
+    padding: 1.5rem;
+  }
+  .message-header h2 {
+    font-size: 1.75rem;
   }
 }
 
@@ -227,5 +392,22 @@
   .hero-logo-container {
     max-width: 120px;
     height: 70px;
+  }
+}
+
+/* Large screen styles for wider president message section */
+@media (min-width: 1400px) {
+  .message-content {
+    max-width: 1600px;
+    grid-template-columns: 1fr 4fr;
+    gap: 3rem;
+  }
+}
+
+@media (min-width: 1800px) {
+  .message-content {
+    max-width: 1800px;
+    grid-template-columns: 1fr 5fr;
+    gap: 3.5rem;
   }
 } 

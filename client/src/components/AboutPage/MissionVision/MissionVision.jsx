@@ -10,18 +10,16 @@ const MissionVision = ({ missionVisionRef }) => {
             <div className="card-icon">🎯</div>
             <h2>Our Mission</h2>
             <p>
-              To empower young people in the Sidama region by providing comprehensive 
-              educational support, skill development programs, and leadership opportunities 
-              that enable them to become active contributors to their communities.
+              To represent, empower, and mobilize the youth of Sidama Region through innovative advocacy, 
+              comprehensive capacity building, active civic engagement, and strategic partnerships that drive positive change.
             </p>
           </div>
           <div className="vision-card">
             <div className="card-icon">🌟</div>
             <h2>Our Vision</h2>
             <p>
-              A thriving Sidama region where every young person has access to quality 
-              education, meaningful opportunities, and the support they need to reach 
-              their full potential and create positive change.
+              We envision a dynamic, empowered, and inclusive youth community in Sidama that actively 
+              shapes the future, contributing meaningfully to regional prosperity and national development.
             </p>
           </div>
         </div>

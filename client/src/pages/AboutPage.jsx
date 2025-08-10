@@ -1,15 +1,14 @@
 import React, { useEffect, useRef } from 'react';
-import { Navbar, Footer, Hero, MissionVision, Values, Team, Impact, Story } from '../components';
+import { Navbar, Footer, MissionVision, Values, Team, Impact, Story, Partners } from '../components';
 import './AboutPage.css';
-import logoImage from '/images/mekerbet-logo.jpg';
 
 const AboutPage = () => {
-  const heroRef = useRef(null);
+  const storyRef = useRef(null);
   const missionVisionRef = useRef(null);
   const valuesRef = useRef(null);
   const teamRef = useRef(null);
   const impactRef = useRef(null);
-  const storyRef = useRef(null);
+  const partnersRef = useRef(null);
 
   useEffect(() => {
     const observerOptions = {
@@ -26,12 +25,12 @@ const AboutPage = () => {
     }, observerOptions);
 
     const elementsToObserve = [
-      heroRef.current,
+      storyRef.current,
       missionVisionRef.current,
       valuesRef.current,
       teamRef.current,
       impactRef.current,
-      storyRef.current
+      partnersRef.current
     ].filter(Boolean);
 
     elementsToObserve.forEach((element) => {
@@ -52,12 +51,12 @@ const AboutPage = () => {
   return (
     <div className="about-page">
       <Navbar />
-      <Hero logoImage={logoImage} heroRef={heroRef} />
+      <Story storyRef={storyRef} />
       <MissionVision missionVisionRef={missionVisionRef} />
       <Values valuesRef={valuesRef} />
       <Team teamRef={teamRef} />
       <Impact impactRef={impactRef} />
-      <Story storyRef={storyRef} />
+      <Partners partnersRef={partnersRef} />
       <Footer />
     </div>
   );

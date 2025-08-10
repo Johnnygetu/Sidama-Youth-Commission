@@ -15,7 +15,8 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="nav-container">
         <Link to="/" className="nav-logo" onClick={handleClose}>
-          <img src={logoImage} alt="Sidama Youth Commission Logo" className="logo-img" />
+          <img src={logoImage} alt="Sidama Region Youth Council Logo" className="logo-img" />
+          <span className="logo-text">Sidama Region Youth Council</span>
         </Link>
         <button className="nav-toggle" onClick={handleToggle} aria-label="Toggle menu">
           <FontAwesomeIcon icon={faBars} size="lg" />
