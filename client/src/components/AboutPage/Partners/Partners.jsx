@@ -8,16 +8,45 @@ const Partners = ({ partnersRef }) => {
     const logos = logosRef.current;
     if (!logos) return;
 
-    // Calculate the exact width needed for seamless loop
-    const logoWidth = 280; // logo width in px
-    const logoMargin = 8; // margin in px (0.5rem = 8px)
-    const totalLogoWidth = logoWidth + logoMargin;
-    const totalWidth = totalLogoWidth * 4; // 4 logos
+    // Function to calculate logo dimensions based on screen size
+    const getLogoDimensions = () => {
+      const screenWidth = window.innerWidth;
+      if (screenWidth <= 360) {
+        return { width: 160, margin: 6 }; // 0.15rem = 6px
+      } else if (screenWidth <= 480) {
+        return { width: 180, margin: 8 }; // 0.2rem = 8px
+      } else if (screenWidth <= 600) {
+        return { width: 200, margin: 10 }; // 0.25rem = 10px
+      } else if (screenWidth <= 768) {
+        return { width: 220, margin: 12 }; // 0.3rem = 12px
+      } else if (screenWidth <= 900) {
+        return { width: 240, margin: 16 }; // 0.4rem = 16px
+      } else if (screenWidth <= 1200) {
+        return { width: 260, margin: 20 }; // 0.5rem = 20px
+      } else {
+        return { width: 280, margin: 24 }; // 0.5rem = 24px
+      }
+    };
 
-    // Set the width to exactly match the content
-    logos.style.width = `${totalWidth}px`;
+    // Function to update animation dimensions
+    const updateAnimationDimensions = () => {
+      const { width, margin } = getLogoDimensions();
+      const totalLogoWidth = width + margin;
+      const totalWidth = totalLogoWidth * 4; // 4 logos
+      logos.style.width = `${totalWidth}px`;
+    };
 
+    // Initial setup
+    updateAnimationDimensions();
+
+    // Animation function
     const scrollLogos = () => {
+      if (!logos) return;
+      
+      const { width, margin } = getLogoDimensions();
+      const totalLogoWidth = width + margin;
+      const totalWidth = totalLogoWidth * 4;
+      
       if (logos.scrollLeft >= totalWidth) {
         logos.scrollLeft = 0;
       } else {
@@ -25,8 +54,93 @@ const Partners = ({ partnersRef }) => {
       }
     };
 
-    const interval = setInterval(scrollLogos, 50);
-    return () => clearInterval(interval);
+    // Start the animation with adaptive speed
+    let animationSpeed = 50; // Default speed
+    let interval = setInterval(scrollLogos, animationSpeed);
+
+    // Function to restart animation with new speed
+    const restartAnimation = (newSpeed) => {
+      clearInterval(interval);
+      animationSpeed = newSpeed;
+      interval = setInterval(scrollLogos, animationSpeed);
+    };
+
+    // Pause animation on hover for better user experience
+    const handleMouseEnter = () => {
+      clearInterval(interval);
+    };
+
+    const handleMouseLeave = () => {
+      // Restart animation when mouse leaves
+      interval = setInterval(scrollLogos, animationSpeed);
+    };
+
+    // Add touch event handlers for mobile devices
+    let isTouching = false;
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchStartTime = 0;
+
+    const handleTouchStart = (e) => {
+      isTouching = true;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      touchStartTime = Date.now();
+      // Pause animation during touch
+      clearInterval(interval);
+    };
+
+    const handleTouchMove = (e) => {
+      if (!isTouching) return;
+      
+      const touchX = e.touches[0].clientX;
+      const touchY = e.touches[0].clientY;
+      const deltaX = Math.abs(touchX - touchStartX);
+      const deltaY = Math.abs(touchY - touchStartY);
+      
+      // If horizontal scroll is more than vertical, prevent default
+      if (deltaX > deltaY) {
+        e.preventDefault();
+      }
+    };
+
+    const handleTouchEnd = () => {
+      isTouching = false;
+      const touchDuration = Date.now() - touchStartTime;
+      
+      // Resume animation after touch ends
+      // Use a slight delay to ensure smooth transition
+      setTimeout(() => {
+        interval = setInterval(scrollLogos, animationSpeed);
+      }, 100);
+    };
+
+    // Handle window resize
+    const handleResize = () => {
+      updateAnimationDimensions();
+      // Restart animation with new dimensions
+      clearInterval(interval);
+      interval = setInterval(scrollLogos, animationSpeed);
+    };
+
+    // Add event listeners
+    logos.addEventListener('mouseenter', handleMouseEnter);
+    logos.addEventListener('mouseleave', handleMouseLeave);
+    logos.addEventListener('touchstart', handleTouchStart, { passive: false });
+    logos.addEventListener('touchmove', handleTouchMove, { passive: false });
+    logos.addEventListener('touchend', handleTouchEnd);
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup function
+    return () => {
+      clearInterval(interval);
+      logos.removeEventListener('mouseenter', handleMouseEnter);
+      logos.removeEventListener('mouseleave', handleMouseLeave);
+      logos.removeEventListener('touchstart', handleTouchStart);
+      logos.removeEventListener('touchmove', handleTouchMove);
+      logos.removeEventListener('touchend', handleTouchEnd);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   return (

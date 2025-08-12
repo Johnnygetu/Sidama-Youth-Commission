@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Navbar, Footer, PageHeader } from '../components';
-import NewsDetail from '../components/NewsDetail/NewsDetail';
+import { Link } from 'react-router-dom';
 import './NewsPage.css';
 import logoImage from '/images/mekerbet-logo.jpg';
 import { API_BASE_URL } from '../config/api';
@@ -9,7 +9,7 @@ const NewsPage = () => {
   const headerRef = useRef(null);
   const newsRef = useRef(null);
   const eventsRef = useRef(null);
-  const [selectedArticle, setSelectedArticle] = useState(null);
+
   const [newsToShow, setNewsToShow] = useState(6); // Show first 6 news articles initially
   const [eventsToShow, setEventsToShow] = useState(6); // Show first 6 events initially
   const [newsArticles, setNewsArticles] = useState([]);
@@ -247,12 +247,12 @@ const NewsPage = () => {
                   <p>
                       {article.fullContent[0] ? article.fullContent[0].substring(0, 150) + '...' : 'No content available...'}
                   </p>
-                                    <button 
+                                    <Link 
+                    to={`/news/${article.id}`}
                     className="read-more" 
-                    onClick={() => setSelectedArticle(article)}
                   >
                     Read More →
-                  </button>
+                  </Link>
                 </div>
               </article>
             ))}
@@ -318,14 +318,6 @@ const NewsPage = () => {
       </section>
 
       <Footer />
-      
-      {/* News Detail Modal */}
-      {selectedArticle && (
-        <NewsDetail 
-          article={selectedArticle} 
-          onClose={() => setSelectedArticle(null)} 
-        />
-      )}
     </div>
   );
 };

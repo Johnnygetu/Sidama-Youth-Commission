@@ -20,14 +20,13 @@ const Hero = ({ logoImage, heroRef }) => (
           <Link to="/contact" className="btn btn-secondary">Get Involved</Link>
         </div>
       </div>
-      <div className="hero-image">
-        <div className="hero-logo-container">
-          <img src={logoImage} alt="Sidama Region Youth Council" className="hero-logo" />
-          <div className="hero-logo-overlay">
-            <span>Youth Empowerment</span>
-          </div>
+        <div className="hero-logo-wrapper">
+          <img 
+            src={logoImage} 
+            alt="Sidama Region Youth Council Logo" 
+            className="hero-logo-image" 
+          />
         </div>
-      </div>
     </div>
     
     {/* President's Message Section */}

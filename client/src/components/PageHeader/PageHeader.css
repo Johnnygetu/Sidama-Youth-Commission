@@ -79,6 +79,16 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1200px) {
+  .header-content {
+    max-width: 700px;
+  }
+  
+  .header-title {
+    font-size: 3rem;
+  }
+}
+
 @media (max-width: 900px) {
   .header-title {
     font-size: 2.5rem;
@@ -91,20 +101,106 @@
   
   .page-header {
     padding: 100px 0 60px;
+    min-height: 50vh;
+  }
+  
+  .header-content {
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-title {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .header-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .header-logo {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .page-header {
+    padding: 80px 0 50px;
+    min-height: 45vh;
   }
 }
 
 @media (max-width: 600px) {
   .header-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .header-subtitle {
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+    padding: 0 10px;
   }
   
   .header-logo {
     width: 80px;
     height: 80px;
+    margin-bottom: 1.2rem;
   }
   
   .page-header {
-    padding: 80px 0 40px;
+    padding: 70px 0 40px;
+    min-height: 40vh;
+  }
+  
+  .header-content {
+    max-width: 100%;
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-title {
+    font-size: 1.6rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .header-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    padding: 0 8px;
+  }
+  
+  .header-logo {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 1rem;
+  }
+  
+  .page-header {
+    padding: 60px 0 30px;
+    min-height: 35vh;
+  }
+}
+
+@media (max-width: 360px) {
+  .header-title {
+    font-size: 1.4rem;
+  }
+  
+  .header-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .header-logo {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .page-header {
+    padding: 50px 0 25px;
+    min-height: 30vh;
   }
 } 
