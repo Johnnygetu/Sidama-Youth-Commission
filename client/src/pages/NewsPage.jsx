@@ -41,7 +41,7 @@ const NewsPage = () => {
               day: 'numeric' 
             }),
             category: "News", // Default category since it's not in the database
-            image: article.image_url || "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=200&fit=crop",
+            image: article.image_url || null,
             tags: ["News", "Community"], // Default tags
             fullContent: article.content.split('\n').filter(paragraph => paragraph.trim() !== '')
           }));
@@ -70,7 +70,7 @@ const NewsPage = () => {
       month: "Dec",
       time: "9:00 AM - 5:00 PM",
       location: "Hawassa Convention Center",
-      image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=400&h=200&fit=crop",
+      image: null,
       description: "Join us for our annual youth summit where young leaders will discuss important issues affecting our community and share innovative solutions."
     },
     {
@@ -80,7 +80,7 @@ const NewsPage = () => {
       month: "Dec",
       time: "10:00 AM - 2:00 PM",
       location: "Various Locations",
-      image: "https://images.unsplash.com/photo-1542810634-71277d95dcbb?w=400&h=200&fit=crop",
+      image: null,
       description: "Spread joy and hope this Christmas by participating in our community service activities and helping those in need."
     },
     {
@@ -90,7 +90,7 @@ const NewsPage = () => {
       month: "Dec",
       time: "2:00 PM - 6:00 PM",
       location: "Youth Center",
-      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=200&fit=crop",
+      image: null,
       description: "Let's plan for an amazing 2024! Join our workshop to set goals and create action plans for personal and community development."
     },
     {
@@ -100,7 +100,7 @@ const NewsPage = () => {
       month: "Jan",
       time: "1:00 PM - 4:00 PM",
       location: "University Auditorium",
-      image: "https://images.unsplash.com/photo-1523240795131-0a3f4bf0e132?w=400&h=200&fit=crop",
+      image: null,
       description: "Get expert advice on career planning, resume building, and interview preparation from industry professionals and career counselors."
     },
     {
@@ -110,7 +110,7 @@ const NewsPage = () => {
       month: "Jan",
       time: "9:00 AM - 6:00 PM",
       location: "Business Incubator Center",
-      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=200&fit=crop",
+      image: null,
       description: "Learn the fundamentals of starting and running a successful business. This intensive bootcamp covers business planning, marketing, and financial management."
     },
     {
@@ -120,7 +120,7 @@ const NewsPage = () => {
       month: "Jan",
       time: "3:00 PM - 7:00 PM",
       location: "Community Hall",
-      image: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8a?w=400&h=200&fit=crop",
+      image: null,
       description: "Celebrate our diverse cultural heritage through music, dance, food, and storytelling. Connect with youth from different backgrounds and learn about various traditions."
     },
     {
@@ -130,7 +130,7 @@ const NewsPage = () => {
       month: "Jan",
       time: "10:00 AM - 1:00 PM",
       location: "Youth Center",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=200&fit=crop",
+      image: null,
       description: "Improve your public speaking and presentation skills with hands-on activities and expert feedback."
     },
     {
@@ -140,7 +140,7 @@ const NewsPage = () => {
       month: "Feb",
       time: "11:00 AM - 3:00 PM",
       location: "Central Park",
-      image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=200&fit=crop",
+      image: null,
       description: "Join us as we launch our new environmental sustainability program with tree planting and clean-up activities."
     },
     {
@@ -150,7 +150,7 @@ const NewsPage = () => {
       month: "Feb",
       time: "8:00 AM - 8:00 PM",
       location: "Innovation Hub",
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=200&fit=crop",
+      image: null,
       description: "Collaborate with fellow youth to build tech solutions for social impact. Prizes for the best projects!"
     }
   ];
@@ -235,7 +235,19 @@ const NewsPage = () => {
           <div className="news-grid">
             {newsArticles.slice(0, newsToShow).map((article) => (
                 <article key={article.id} className="news-card">
-                <div className="news-image" style={{ backgroundImage: `url(${article.image})` }}>
+                <div 
+                  className="news-image" 
+                  style={{ 
+                    backgroundImage: article.image ? `url(${article.image})` : 'none',
+                    backgroundColor: article.image ? 'transparent' : '#f5f5f5',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#999',
+                    fontSize: '0.9rem'
+                  }}
+                >
+                  {!article.image && 'No Image'}
                   <div className="news-date">
                     <span className="day">{article.day}</span>
                     <span className="month">{article.month}</span>
@@ -282,7 +294,10 @@ const NewsPage = () => {
           <div className="events-grid">
             {eventsData.slice(0, eventsToShow).map((event) => (
               <div key={event.id} className="event-card">
-                <div className="event-header" style={{ backgroundImage: `url(${event.image})` }}>
+                <div className="event-header" style={{ 
+                  backgroundImage: event.image ? `url(${event.image})` : 'none',
+                  backgroundColor: event.image ? 'transparent' : '#f8f9fa'
+                }}>
                   <div className="event-date">
                     <span className="event-day">{event.day}</span>
                     <span className="event-month">{event.month}</span>
@@ -292,6 +307,11 @@ const NewsPage = () => {
                     <span className="event-time">{event.time}</span>
                     <span className="event-location">{event.location}</span>
                   </div>
+                  {!event.image && (
+                    <div className="event-no-image-placeholder">
+                      <span>📅</span>
+                    </div>
+                  )}
                 </div>
                 <div className="event-content">
                   <p>{event.description}</p>

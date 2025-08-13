@@ -37,19 +37,12 @@ const NewsDetailPage = () => {
             }),
             category: "News",
             // Support for multiple images - if image_url contains multiple URLs separated by comma
-            // For testing purposes, if no images are provided, add some dummy images
-            // TODO: Remove these dummy images once real images are uploaded through admin panel
             images: result.data.image_url ? 
               result.data.image_url.split(',').map(url => url.trim()).filter(url => url) : 
-              [
-                "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=400&fit=crop",
-                "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=800&h=400&fit=crop",
-                "https://images.unsplash.com/photo-1542810634-71277d95dcbb?w=800&h=400&fit=crop",
-                "https://images.unsplash.com/photo-1523240795131-0a3f4bf0e132?w=800&h=400&fit=crop"
-              ],
+              [],
             mainImage: result.data.image_url ? 
               result.data.image_url.split(',').map(url => url.trim()).filter(url => url)[0] : 
-              "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=400&fit=crop",
+              null,
             tags: ["News", "Community"],
             fullContent: result.data.content.split('\n').filter(paragraph => paragraph.trim() !== ''),
             createdAt: result.data.created_at
@@ -156,82 +149,32 @@ const NewsDetailPage = () => {
       <Navbar />
       
       {/* Hero Section with Main Image */}
-      <section className="news-hero">
-        <div className="hero-image-container">
-          {article.images.length > 1 ? (
-            <div className="image-gallery">
+      {article.images.length > 0 ? (
+        <section className="news-hero">
+          <div className="hero-image-container">
+            {article.images.length > 1 ? (
+              <div className="image-gallery">
+                <img 
+                  src={article.images[currentImageIndex]} 
+                  alt={`${article.title} - Image ${currentImageIndex + 1}`}
+                  className="hero-image"
+                />
+              </div>
+            ) : (
               <img 
-                src={article.images[currentImageIndex]} 
-                alt={`${article.title} - Image ${currentImageIndex + 1}`}
+                src={article.mainImage} 
+                alt={article.title}
                 className="hero-image"
               />
-              {/* {article.images.length > 1 && (
-                <>
-                  <button className="gallery-nav prev" onClick={prevImage}>
-                    <FontAwesomeIcon icon={faArrowLeft} />
-                  </button>
-                  <button className="gallery-nav next" onClick={nextImage}>
-                    <FontAwesomeIcon icon={faArrowLeft} />
-                  </button>
-                  <div className="image-counter">
-                    {currentImageIndex + 1} / {article.images.length}
-                  </div>
-                </>
-              )} */}
-            </div>
-          ) : (
-            <img 
-              src={article.mainImage} 
-              alt={article.title}
-              className="hero-image"
-            />
-          )}
-        </div>
-      </section>
-
-      {/* Lightboxes Section */}
-      <section className="lightboxes-section">
-        <div className="container">
-          <div className="lightboxes-container">
-            <div className="lightboxes-grid">
-              {article.images.map((image, index) => (
-                <div 
-                  key={index} 
-                  className={`lightbox ${index === currentImageIndex ? 'active' : ''}`}
-                  onClick={() => setCurrentImageIndex(index)}
-                >
-                  {/* Show actual image if it's a real URL, otherwise show black box */}
-                  {image && image.startsWith('http') ? (
-                    <img 
-                      src={image} 
-                      alt={`${article.title} - Image ${index + 1}`}
-                      className="lightbox-image"
-                    />
-                  ) : (
-                    <div className="lightbox-placeholder">
-                      <span className="image-number">{index + 1}</span>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
+            )}
           </div>
-        </div>
-      </section>
-
-      {/* Article Content */}
-      <section className="article-content">
-        <div className="container">
-          <div className="article-back">
-            <Link to="/news" className="back-link">
-              <FontAwesomeIcon icon={faArrowLeft} />
-              Back to News
-            </Link>
-          </div>
-          <article className="news-article">
-            <header className="article-header">
-              <h1 className="article-title">{article.title}</h1>
-              <div className="article-meta">
+        </section>
+      ) : (
+        <section className="news-hero no-image">
+          <div className="hero-no-image-container">
+            <div className="no-image-placeholder">
+              <h1 className="article-title-no-image">{article.title}</h1>
+              <div className="article-meta-no-image">
                 <span className="meta-item">
                   <FontAwesomeIcon icon={faUser} />
                   By {article.author}
@@ -245,6 +188,66 @@ const NewsDetailPage = () => {
                   {article.category}
                 </span>
               </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Lightboxes Section - Only show when there are images */}
+      {article.images.length > 0 && (
+        <section className="lightboxes-section">
+          <div className="container">
+            <div className="lightboxes-container">
+              <div className="lightboxes-grid">
+                {article.images.map((image, index) => (
+                  <div 
+                    key={index} 
+                    className={`lightbox ${index === currentImageIndex ? 'active' : ''}`}
+                    onClick={() => setCurrentImageIndex(index)}
+                  >
+                    <img 
+                      src={image} 
+                      alt={`${article.title} - Image ${index + 1}`}
+                      className="lightbox-image"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Article Content */}
+      <section className="article-content">
+        <div className="container">
+          <div className="article-back">
+            <Link to="/news" className="back-link">
+              <FontAwesomeIcon icon={faArrowLeft} />
+              Back to News
+            </Link>
+          </div>
+          <article className="news-article">
+            <header className="article-header">
+              {article.images.length === 0 && (
+                <>
+                  <h1 className="article-title">{article.title}</h1>
+                  <div className="article-meta">
+                    <span className="meta-item">
+                      <FontAwesomeIcon icon={faUser} />
+                      By {article.author}
+                    </span>
+                    <span className="meta-item">
+                      <FontAwesomeIcon icon={faCalendar} />
+                      {article.fullDate}
+                    </span>
+                    <span className="meta-item">
+                      <FontAwesomeIcon icon={faTag} />
+                      {article.category}
+                    </span>
+                  </div>
+                </>
+              )}
             </header>
 
             <div className="article-body">

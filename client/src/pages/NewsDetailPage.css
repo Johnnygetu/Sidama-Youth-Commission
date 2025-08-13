@@ -13,6 +13,55 @@
   overflow: hidden;
 }
 
+/* No Image Hero Layout */
+.news-hero.no-image {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 3rem 0;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.hero-no-image-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.no-image-placeholder {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.article-title-no-image {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.2;
+}
+
+.article-meta-no-image {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.article-meta-no-image .meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #6c757d;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.article-meta-no-image .meta-item svg {
+  color: #1a75c4;
+  font-size: 1rem;
+}
+
 .hero-image-container { position: relative; width: 100%; height: auto; }
 
 /* Constrain hero image height so lightboxes appear without scroll */

@@ -1,5 +1,8 @@
 <?php
-header('Content-Type: application/json');
+require_once '../config/config.php';
+require_once '../config/database.php';
+
+header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
@@ -165,11 +168,15 @@ try {
 
     $image_url_field = !empty($uploadedUrls) ? implode(',', $uploadedUrls) : null;
 
-    $pdo = new PDO('mysql:host=eltechsolutions-et.com;dbname=eltechev_sidamaYouthComission;charset=utf8mb4', 'eltechev_syc', 'Qwertyuiop123');
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $pdo->prepare('INSERT INTO news (title, content, author, image_url, created_at, updated_at) VALUES (?, ?, ?, ?, NOW(), NOW())');
-    $stmt->execute([$title, $content, $author, $image_url_field]);
-    $id = $pdo->lastInsertId();
+    $db = Database::getInstance();
+    $id = $db->insert('news', [
+        'title' => $title,
+        'content' => $content,
+        'author' => $author,
+        'image_url' => $image_url_field,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s')
+    ]);
 
     respond_json([
         'success' => true,
