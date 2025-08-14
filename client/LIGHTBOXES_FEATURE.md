@@ -145,3 +145,4 @@ onClick={() => setCurrentImageIndex(index)}
 
 
 
+

@@ -39,7 +39,7 @@ const ContactForm = ({ contactFormRef }) => {
     try {
       console.log("🌐 Client: Sending POST request to createMessage.php");
       const response = await fetch(
-        "https://phpsample.eltechsolutions-et.com/messages/createMessage.php",
+        "https://api.sidamayouthcouncil.com/messages/createMessage.php",
         {
           method: "POST",
           headers: {

@@ -77,7 +77,7 @@ const Team = ({ teamRef }) => {
               </div>
               
               <button 
-                className="view-more-btn"
+                className="btn btn-primary"
                 onClick={() => handleViewMore(member)}
               >
                 View Profile

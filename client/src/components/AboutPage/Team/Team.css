@@ -221,25 +221,13 @@
 }
 
 .view-more-btn {
-  background: linear-gradient(135deg, #1a75c4, #ff9219);
-  color: white;
-  border: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: 25px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(26, 117, 196, 0.3);
-  margin-top: 1rem;
+  transition: 0.3ms all;
+  background-color: #1a75c4 !important;
 }
 
 .view-more-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(26, 117, 196, 0.4);
-  background: linear-gradient(135deg, #0f4a8a, #e67e22);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(26, 117, 196, 0.4);
 }
 
 /* Responsive Design */
