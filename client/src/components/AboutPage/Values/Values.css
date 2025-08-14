@@ -111,16 +111,16 @@
 }
 
 .value-icon {
-  font-size: 4.5rem;
+  font-size: 1.8rem;
   margin-bottom: 2rem;
   display: block;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
 }
 
 .value-card:hover .value-icon {
-  transform: scale(1.2) rotate(5deg);
-  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+  transform: scale(1.1);
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
 }
 
 .value-card h3 {

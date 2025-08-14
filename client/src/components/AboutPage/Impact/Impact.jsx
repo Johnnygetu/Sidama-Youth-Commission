@@ -6,6 +6,9 @@ const Impact = ({ impactRef }) => {
     <section className="impact-section" ref={impactRef}>
       <div className="container">
         <h2 className="section-title">Our Strategic Goals & Targets</h2>
+        <p className="section-subtitle">
+          Building a stronger future for Sidama youth through measurable impact and sustainable development
+        </p>
         <div className="impact-grid">
           <div className="impact-stat">
             <div className="stat-number">2.2M+</div>

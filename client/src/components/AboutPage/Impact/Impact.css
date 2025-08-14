@@ -23,9 +23,21 @@
   font-size: 3rem;
   font-weight: 900;
   color: #1a75c4;
-  margin-bottom: 4rem;
+  margin-bottom: 1.5rem;
   position: relative;
   letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 1.3rem;
+  color: #64748b;
+  margin-bottom: 4rem;
+  font-weight: 500;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
 }
 
 
