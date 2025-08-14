@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Hero.css';
+import presidentImage from '../../../assets/photo_2025-08-14_11-53-35.jpg';
 
 const Hero = ({ logoImage, heroRef }) => (
   <section id="home" className="hero" ref={heroRef}>
@@ -35,10 +36,11 @@ const Hero = ({ logoImage, heroRef }) => (
         <div className="message-content">
           <div className="president-info">
             <div className="president-photo">
-              <div className="photo-placeholder">
-                <span>President Photo</span>
-                <p>Photo of Mr. Yishak Sanbura</p>
-              </div>
+              <img
+                src={presidentImage}
+                alt="President - Mr. Yishak Sanbura"
+                className="president-photo-img"
+              />
             </div>
             <div className="president-details">
               <h2>Message from the President</h2>

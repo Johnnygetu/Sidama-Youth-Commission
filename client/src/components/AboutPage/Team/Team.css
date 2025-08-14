@@ -50,7 +50,7 @@
   }
 }
 
-.section-subtitle-team {
+.section-subtitle {
   text-align: center;
   font-size: 1.3rem;
   color: #1a75c4;
@@ -59,16 +59,15 @@
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
-  line-height: 1.6;
 }
 
 .team-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 3rem;
-  position: relative;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
 }
 
 .team-member {
@@ -82,6 +81,7 @@
   position: relative;
   overflow: hidden;
   transform: translateY(0);
+  cursor: pointer;
 }
 
 .team-member::before {
@@ -107,24 +107,46 @@
 }
 
 .member-avatar {
-  margin-bottom: 2rem;
   position: relative;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.member-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(26, 117, 196, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.member-photo:hover {
+  transform: scale(1.05);
+  border-color: rgba(26, 117, 196, 0.4);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
 }
 
 .avatar-placeholder {
   width: 120px;
   height: 120px;
-  background: linear-gradient(135deg, #1a75c4 0%, #ff9219 100%);
+  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3.5rem;
-  margin: 0 auto;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
+  color: #64748b;
+  border: 4px solid rgba(26, 117, 196, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.avatar-placeholder:hover {
+  transform: scale(1.05);
+  border-color: rgba(26, 117, 196, 0.4);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
 }
 
 .avatar-placeholder::before {
@@ -152,31 +174,41 @@
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
+.avatar-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(26, 117, 196, 0.1) 0%, rgba(255, 146, 25, 0.1) 100%);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.team-member:hover .avatar-overlay {
+  opacity: 1;
+}
+
 .member-info {
-  text-align: left;
-}
-
-.member-info h3 {
   text-align: center;
-  font-size: 1.8rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, #1a75c4 0%, #0f4a8a 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 0.5rem;
-  position: relative;
-}
-
-.member-role {
-  text-align: center;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #ff9219;
   margin-bottom: 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  position: relative;
+}
+
+.member-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.member-title {
+  font-size: 1rem;
+  color: #64748b;
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0;
 }
 
 .member-bio {
@@ -188,28 +220,26 @@
   font-weight: 500;
 }
 
-.member-expertise {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  justify-content: center;
-}
-
-.expertise-tag {
-  background: linear-gradient(135deg, rgba(26, 117, 196, 0.1) 0%, rgba(255, 146, 25, 0.1) 100%);
-  color: #1a75c4;
-  padding: 0.4rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.85rem;
+.view-more-btn {
+  background: linear-gradient(135deg, #1a75c4, #ff9219);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
   font-weight: 600;
-  border: 1px solid rgba(26, 117, 196, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(26, 117, 196, 0.3);
+  margin-top: 1rem;
 }
 
-.expertise-tag:hover {
-  background: linear-gradient(135deg, rgba(26, 117, 196, 0.2) 0%, rgba(255, 146, 25, 0.2) 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(26, 117, 196, 0.2);
+.view-more-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(26, 117, 196, 0.4);
+  background: linear-gradient(135deg, #0f4a8a, #e67e22);
 }
 
 /* Responsive Design */
@@ -239,10 +269,6 @@
 }
 
 @media (max-width: 480px) {
-  .section-title {
-    font-size: 2rem;
-  }
-  
   .team-member {
     padding: 2rem 1.5rem;
   }
