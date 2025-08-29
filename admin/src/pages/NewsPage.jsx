@@ -32,7 +32,9 @@ function NewsPage() {
             }),
             author: article.author,
             category: "News", // Default category since it's not in the database
-            image: article.image_url || null,
+            image:
+              article.image_url ||
+              "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=200&fit=crop",
             fullContent: article.content
               .split("\n")
               .filter((paragraph) => paragraph.trim() !== ""),
@@ -168,17 +170,7 @@ function NewsPage() {
               }}>
             <div
               className="news-image"
-              style={{ 
-                backgroundImage: article.image ? `url(${article.image})` : 'none',
-                backgroundColor: article.image ? 'transparent' : '#f5f5f5',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#999',
-                fontSize: '0.9rem'
-              }}>
-              {!article.image && 'No Image'}
-            </div>
+              style={{ backgroundImage: `url(${article.image})` }}></div>
             <div className="news-content" style={{ flex: 1 }}>
               <h3>{article.title}</h3>
               <div className="news-meta">

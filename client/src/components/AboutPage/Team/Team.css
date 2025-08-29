@@ -7,7 +7,7 @@
 }
 
 .team-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -29,7 +29,7 @@
 }
 
 .section-title::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -15px;
   left: 50%;
@@ -46,7 +46,8 @@
     box-shadow: 0 0 10px rgba(26, 117, 196, 0.5);
   }
   to {
-    box-shadow: 0 0 25px rgba(26, 117, 196, 0.8), 0 0 35px rgba(255, 146, 25, 0.6);
+    box-shadow: 0 0 25px rgba(26, 117, 196, 0.8),
+      0 0 35px rgba(255, 146, 25, 0.6);
   }
 }
 
@@ -85,7 +86,7 @@
 }
 
 .team-member::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -113,7 +114,7 @@
   justify-content: center;
 }
 
-.member-photo {
+.team-section .member-photo {
   width: 120px;
   height: 120px;
   border-radius: 50%;
@@ -123,7 +124,7 @@
   transition: all 0.3s ease;
 }
 
-.member-photo:hover {
+.team-section .member-photo:hover {
   transform: scale(1.05);
   border-color: rgba(26, 117, 196, 0.4);
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
@@ -150,13 +151,17 @@
 }
 
 .avatar-placeholder::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.3) 0%,
+    transparent 70%
+  );
   animation: rotate 15s linear infinite;
 }
 
@@ -180,7 +185,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(26, 117, 196, 0.1) 0%, rgba(255, 146, 25, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(26, 117, 196, 0.1) 0%,
+    rgba(255, 146, 25, 0.1) 100%
+  );
   border-radius: 50%;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -235,20 +244,20 @@
   .team-section {
     padding: 80px 0;
   }
-  
+
   .section-title {
     font-size: 2.5rem;
   }
-  
+
   .team-grid {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2.5rem;
   }
-  
+
   .team-member {
     padding: 2.5rem 2rem;
   }
-  
+
   .avatar-placeholder {
     width: 100px;
     height: 100px;
@@ -260,22 +269,22 @@
   .team-member {
     padding: 2rem 1.5rem;
   }
-  
+
   .avatar-placeholder {
     width: 80px;
     height: 80px;
     font-size: 2.5rem;
   }
-  
+
   .team-member h3 {
     font-size: 1.5rem;
   }
-  
+
   .member-role {
     font-size: 1rem;
   }
-  
+
   .member-bio {
     font-size: 1rem;
   }
-} 
+}

@@ -1,25 +1,32 @@
-import React, { useEffect, useRef } from 'react';
-import { Navbar, Footer, MissionVision, Values, Team, Impact, Story, Partners } from '../components';
-import './AboutPage.css';
+import React, { useEffect, useRef } from "react";
+import {
+  Navbar,
+  Footer,
+  MissionVision,
+  Values,
+  Impact,
+  Story,
+  Partners,
+} from "../components";
+import "./AboutPage.css";
 
 const AboutPage = () => {
   const storyRef = useRef(null);
   const missionVisionRef = useRef(null);
   const valuesRef = useRef(null);
-  const teamRef = useRef(null);
   const impactRef = useRef(null);
   const partnersRef = useRef(null);
 
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      rootMargin: "0px 0px -50px 0px",
     };
-    
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animate-in');
+          entry.target.classList.add("animate-in");
         }
       });
     }, observerOptions);
@@ -28,9 +35,8 @@ const AboutPage = () => {
       storyRef.current,
       missionVisionRef.current,
       valuesRef.current,
-      teamRef.current,
       impactRef.current,
-      partnersRef.current
+      partnersRef.current,
     ].filter(Boolean);
 
     elementsToObserve.forEach((element) => {
@@ -54,7 +60,6 @@ const AboutPage = () => {
       <Story storyRef={storyRef} />
       <MissionVision missionVisionRef={missionVisionRef} />
       <Values valuesRef={valuesRef} />
-      <Team teamRef={teamRef} />
       <Impact impactRef={impactRef} />
       <Partners partnersRef={partnersRef} />
       <Footer />
@@ -62,4 +67,4 @@ const AboutPage = () => {
   );
 };
 
-export default AboutPage; 
+export default AboutPage;

@@ -39,7 +39,7 @@ const ContactForm = ({ contactFormRef }) => {
     try {
       console.log("🌐 Client: Sending POST request to createMessage.php");
       const response = await fetch(
-        "https://api.sidamayouthcouncil.com/messages/createMessage.php",
+        "https://phpsample.eltechsolutions-et.com/messages/createMessage.php",
         {
           method: "POST",
           headers: {
@@ -166,24 +166,32 @@ const ContactForm = ({ contactFormRef }) => {
         <div className="contact-info-card">
           <h2>Contact Information</h2>
           <div className="info-item">
-            <span className="info-icon">📍</span>
+            <span className="info-icon">
+              <i className="fas fa-map-marker-alt"></i>
+            </span>
             <span>Hawassa, Sidama Region, Ethiopia</span>
           </div>
           <div className="info-item">
-            <span className="info-icon">📧</span>
+            <span className="info-icon">
+              <i className="fas fa-envelope"></i>
+            </span>
             <span>info@sidamayouth.org</span>
           </div>
           <div className="info-item">
-            <span className="info-icon">📞</span>
+            <span className="info-icon">
+              <i className="fas fa-phone"></i>
+            </span>
             <span>+251 911 234 567</span>
           </div>
           <div className="info-item">
-            <span className="info-icon">🌐</span>
+            <span className="info-icon">
+              <i className="fas fa-globe"></i>
+            </span>
             <span>www.sidamayouth.org</span>
           </div>
           <div className="map-placeholder">
             <span role="img" aria-label="map" style={{ fontSize: "2.5rem" }}>
-              🗺️
+              <i className="fas fa-map" style={{ color: "#1a75c4" }}></i>
             </span>
             <p>Map Location</p>
           </div>

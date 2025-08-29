@@ -7,9 +7,8 @@
   overflow: hidden;
 }
 
-
 .partners-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -57,9 +56,9 @@
   overflow: hidden;
   position: relative;
   width: 100%;
-  /* Ensure smooth scrolling on all devices */
+  /* Ensure instant scrolling on all devices */
   -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
+  scroll-behavior: instant;
   /* Prevent any interference with animation */
   touch-action: pan-x;
 }
@@ -112,7 +111,7 @@
     max-width: 1000px;
     padding: 0 1.5rem;
   }
-  
+
   .partner-logo {
     width: 260px;
     height: 150px;
@@ -123,16 +122,16 @@
   .partners-section {
     padding: 70px 0;
   }
-  
+
   .section-title-partners {
     font-size: 2.8rem;
   }
-  
+
   .section-subtitle {
     font-size: 1.15rem;
     margin-bottom: 2.5rem;
   }
-  
+
   .partner-logo {
     width: 240px;
     height: 140px;
@@ -144,22 +143,22 @@
   .partners-section {
     padding: 60px 0;
   }
-  
+
   .section-title-partners {
     font-size: 2.5rem;
   }
-  
+
   .section-subtitle {
     font-size: 1.1rem;
     margin-bottom: 2rem;
   }
-  
+
   .partner-logo {
     width: 220px;
     height: 130px;
     margin: 0 0.3rem;
   }
-  
+
   .container {
     padding: 0 1.2rem;
   }
@@ -169,22 +168,22 @@
   .partners-section {
     padding: 50px 0;
   }
-  
+
   .section-title-partners {
     font-size: 2.2rem;
   }
-  
+
   .section-subtitle {
     font-size: 1rem;
     margin-bottom: 1.8rem;
   }
-  
+
   .partner-logo {
     width: 200px;
     height: 120px;
     margin: 0 0.25rem;
   }
-  
+
   .container {
     padding: 0 1rem;
   }
@@ -194,33 +193,33 @@
   .partners-section {
     padding: 40px 0;
   }
-  
+
   .section-title-partners {
     font-size: 2rem;
   }
-  
+
   .section-subtitle {
     font-size: 0.95rem;
     margin-bottom: 1.5rem;
   }
-  
+
   .partner-logo {
     width: 180px;
     height: 100px;
     margin: 0 0.2rem;
   }
-  
+
   .container {
     padding: 0 0.8rem;
   }
-  
+
   /* Ensure animation continues on mobile */
   .logos-wrapper {
     -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
+    scroll-behavior: instant;
     touch-action: pan-x;
   }
-  
+
   .logos-slide {
     will-change: transform;
     min-height: 100px;
@@ -231,26 +230,26 @@
   .partners-section {
     padding: 35px 0;
   }
-  
+
   .section-title-partners {
     font-size: 1.9rem;
   }
-  
+
   .section-subtitle {
     font-size: 0.9rem;
     margin-bottom: 1.3rem;
   }
-  
+
   .partner-logo {
     width: 170px;
     height: 95px;
     margin: 0 0.15rem;
   }
-  
+
   .container {
     padding: 0 0.7rem;
   }
-  
+
   .logos-slide {
     min-height: 95px;
   }
@@ -260,26 +259,26 @@
   .partners-section {
     padding: 35px 0;
   }
-  
+
   .section-title-partners {
     font-size: 1.8rem;
   }
-  
+
   .section-subtitle {
     font-size: 0.9rem;
     margin-bottom: 1.2rem;
   }
-  
+
   .partner-logo {
     width: 160px;
     height: 90px;
     margin: 0 0.15rem;
   }
-  
+
   .container {
     padding: 0 0.6rem;
   }
-  
+
   .logos-slide {
     min-height: 90px;
   }
@@ -289,34 +288,34 @@
   .partners-section {
     padding: 30px 0;
   }
-  
+
   .section-title-partners {
     font-size: 1.7rem;
   }
-  
+
   .section-subtitle {
     font-size: 0.85rem;
     margin-bottom: 1rem;
   }
-  
+
   .partner-logo {
     width: 150px;
     height: 85px;
     margin: 0 0.1rem;
   }
-  
+
   .container {
     padding: 0 0.5rem;
   }
-  
+
   .logos-slide {
     min-height: 85px;
   }
-  
+
   /* Ensure animation works at this size */
   .logos-wrapper {
     -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
+    scroll-behavior: instant;
     touch-action: pan-x;
   }
 }
@@ -326,17 +325,17 @@
   .partner-logo:hover {
     transform: none;
   }
-  
+
   .partner-logo:active {
     transform: translateY(-2px);
     background: rgba(255, 255, 255, 1);
     border-color: rgba(255, 255, 255, 0.5);
   }
-  
+
   .partner-logo:hover img {
     transform: none;
   }
-  
+
   .partner-logo:active img {
     transform: scale(1.05);
   }
@@ -347,17 +346,17 @@
   .partners-section {
     padding: 40px 0;
   }
-  
+
   .section-title-partners {
     font-size: 2rem;
     margin-bottom: 0.5rem;
   }
-  
+
   .section-subtitle {
     font-size: 1rem;
     margin-bottom: 1.5rem;
   }
-  
+
   .partners-container {
     padding: 1rem 0;
   }
@@ -374,7 +373,7 @@
     /* Prevent interference */
     touch-action: pan-x;
   }
-  
+
   .logos-slide {
     /* Ensure smooth animation */
     will-change: transform;
@@ -384,4 +383,4 @@
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
   }
-} 
+}

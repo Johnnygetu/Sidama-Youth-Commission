@@ -42,12 +42,12 @@
 .profile-header {
   background: #ffffff;
   color: #1e293b;
-  padding: 60px;
+  padding: 80px;
   border-radius: 20px 20px 0 0;
   margin-bottom: 0;
   display: flex;
   align-items: center;
-  gap: 50px;
+  gap: 60px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
   border: 1px solid #e2e8f0;
   border-bottom: none;
@@ -55,7 +55,7 @@
 }
 
 .profile-header::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -70,9 +70,9 @@
 }
 
 .profile-photo {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
+  width: 320px;
+  height: 420px;
+  border-radius: 20px;
   object-fit: cover;
   border: 4px solid #1a75c4;
   box-shadow: 0 15px 35px rgba(26, 117, 196, 0.15);
@@ -86,10 +86,10 @@
 }
 
 .avatar-placeholder-large {
-  width: 160px;
-  height: 160px;
+  width: 320px;
+  height: 420px;
   background: #f1f5f9;
-  border-radius: 50%;
+  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -105,7 +105,7 @@
 }
 
 .member-info h1 {
-  font-size: 48px;
+  font-size: 56px;
   font-weight: 800;
   margin-bottom: 16px;
   color: #0f172a;
@@ -148,9 +148,21 @@
   color: #1e293b;
 }
 
+.contact-item:hover span:first-child i {
+  color: #ff9219;
+  transform: scale(1.1);
+}
+
 .contact-item span:first-child {
   font-size: 22px;
   opacity: 0.8;
+}
+
+.contact-item span:first-child i {
+  color: #1a75c4;
+  font-size: 20px;
+  width: 20px;
+  text-align: center;
 }
 
 /* Member Content - WIDER AND BETTER STYLED WITH INTEGRATED BUTTON */
@@ -175,7 +187,7 @@
 }
 
 .about-section h3::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -10px;
   left: 50%;
@@ -234,7 +246,8 @@
 
 .back-btn:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(26, 117, 196, 0.2), 0 4px 12px rgba(26, 117, 196, 0.2) !important;
+  box-shadow: 0 0 0 3px rgba(26, 117, 196, 0.2),
+    0 4px 12px rgba(26, 117, 196, 0.2) !important;
 }
 
 /* Responsive Design */
@@ -243,40 +256,40 @@
     padding-top: 80px;
     padding-bottom: 40px;
   }
-  
+
   .profile-container {
     max-width: 100%;
   }
-  
+
   .profile-header {
     flex-direction: column;
     text-align: center;
     padding: 40px 25px;
     gap: 25px;
   }
-  
+
   .member-info h1 {
     font-size: 32px;
   }
-  
+
   .member-info h2 {
     font-size: 20px;
   }
-  
+
   .member-content {
     padding: 40px 25px;
   }
-  
+
   .about-section h3 {
     font-size: 24px;
   }
-  
+
   .about-section p {
     font-size: 16px;
     text-align: left;
     margin-bottom: 30px;
   }
-  
+
   .back-btn {
     min-width: 100px;
     padding: 10px 20px !important;
@@ -289,32 +302,32 @@
   .profile-container {
     padding: 0 15px;
   }
-  
+
   .profile-header {
     padding: 30px 20px;
   }
-  
+
   .member-info h1 {
     font-size: 28px;
   }
-  
+
   .member-info h2 {
     font-size: 18px;
   }
-  
+
   .member-content {
     padding: 30px 20px;
   }
-  
+
   .about-section h3 {
     font-size: 22px;
   }
-  
+
   .about-section p {
     font-size: 15px;
     margin-bottom: 25px;
   }
-  
+
   .back-btn {
     min-width: 90px;
     padding: 8px 16px !important;

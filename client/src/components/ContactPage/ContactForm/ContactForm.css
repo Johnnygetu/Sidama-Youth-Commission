@@ -57,7 +57,7 @@
 }
 
 .btn.btn-primary {
-  background: linear-gradient(135deg, #1a75c4);
+  background: linear-gradient(135deg, #1a75c4 0%, #ff9219 100%);
   color: white;
   padding: 1rem 2rem;
   border: none;
@@ -122,6 +122,13 @@
 
 .info-icon {
   font-size: 1.5rem;
+}
+
+.info-icon i {
+  color: #1a75c4;
+  font-size: 1.2rem;
+  width: 20px;
+  text-align: center;
 }
 
 .map-placeholder {
