@@ -46,3 +46,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
 --
 -- This approach allows for flexible image management without changing the database structure
 
+
+
+
+

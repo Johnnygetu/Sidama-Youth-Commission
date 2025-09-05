@@ -6,7 +6,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: instant;
 }
 
 body {
@@ -21,9 +21,9 @@ body {
   min-height: 100vh;
 }
 
-/* Smooth scrolling for anchor links */
+/* Instant scrolling for anchor links */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: instant;
 }
 
 /* #ff9219 */

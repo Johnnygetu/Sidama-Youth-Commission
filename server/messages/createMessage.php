@@ -24,7 +24,7 @@ logMessage("🔄 Server: Message creation endpoint accessed");
 logMessage("📡 Server: Request method", $_SERVER['REQUEST_METHOD']);
 logMessage("📡 Server: Request headers", getallheaders());
 
-header('Content-Type: application/json; charset=utf-8');
+header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         'success' => false,
         'message' => 'Only POST method allowed',
         'data' => null
-    ], JSON_UNESCAPED_UNICODE);
+    ]);
     exit();
 }
 
@@ -82,20 +82,20 @@ try {
     logMessage("✅ Server: All validations passed");
 
     logMessage("🔗 Server: Connecting to database");
-    require_once '../config/config.php';
-    require_once '../config/database.php';
-    $db = Database::getInstance();
+    $pdo = new PDO('mysql:host=eltechsolutions-et.com;dbname=eltechev_sidamaYouthComission;charset=utf8mb4', 'eltechev_syc', 'Qwertyuiop123');
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     logMessage("✅ Server: Database connection established");
 
     logMessage("💾 Server: Inserting message into database");
-    $id = $db->insert('contact_messages', [
-        'name' => $input['name'],
-        'email' => $input['email'],
-        'subject' => $input['subject'],
-        'message' => $input['message'],
-        'status' => 'unread',
-        'created_at' => date('Y-m-d H:i:s')
+    $stmt = $pdo->prepare('INSERT INTO contact_messages (name, email, subject, message, status, created_at) VALUES (?, ?, ?, ?, ?, NOW())');
+    $stmt->execute([
+        $input['name'],
+        $input['email'],
+        $input['subject'],
+        $input['message'],
+        'unread'
     ]);
+    $id = $pdo->lastInsertId();
     logMessage("✅ Server: Message inserted successfully", ['id' => $id]);
 
     $responseData = [
@@ -112,12 +112,12 @@ try {
         'success' => true,
         'message' => 'Message sent successfully',
         'data' => $responseData
-    ], JSON_UNESCAPED_UNICODE);
+    ]);
 } catch (Exception $e) {
     logMessage("💥 Server: Exception occurred", ['error' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
     echo json_encode([
         'success' => false,
         'message' => $e->getMessage(),
         'data' => null
-    ], JSON_UNESCAPED_UNICODE);
+    ]);
 }

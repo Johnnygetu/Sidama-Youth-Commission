@@ -142,3 +142,7 @@ onClick={() => setCurrentImageIndex(index)}
 - **Performance**: Images are loaded eagerly (consider lazy loading for production)
 - **Accessibility**: Ensure proper alt text for all images
 
+
+
+
+

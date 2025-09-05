@@ -6,9 +6,9 @@ function AddNewsPage() {
   const [form, setForm] = useState({
     title: "",
     author: "",
+    image_url: "",
     content: "",
   });
-  const [files, setFiles] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
   const formRef = useRef(null);
@@ -23,24 +23,14 @@ function AddNewsPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleFileChange = (e) => {
-    const selected = Array.from(e.target.files || []);
-    setFiles(selected);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const fd = new FormData();
-      fd.append("title", form.title);
-      fd.append("author", form.author);
-      fd.append("content", form.content);
-      files.forEach((file) => fd.append("images[]", file));
-
       const response = await fetch(`${API_BASE_URL}/news/createNews.php`, {
         method: "POST",
-        body: fd,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
       });
       const result = await response.json();
       if (result.success) {
@@ -58,7 +48,7 @@ function AddNewsPage() {
 
   return (
     <div ref={formRef} className="premium-form">
-      
+      <h2 style={{ marginTop: 0 }}>Add News</h2>
       <form
         onSubmit={handleSubmit}
         style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
@@ -78,21 +68,13 @@ function AddNewsPage() {
           required
           disabled={isSubmitting}
         />
-        <div style={{ display: "grid", gap: "0.5rem" }}>
-          <label style={{ fontWeight: 600 }}>Images (you can select multiple)</label>
-          <input
-            type="file"
-            accept="image/*"
-            multiple
-            onChange={handleFileChange}
-            disabled={isSubmitting}
-          />
-          {files?.length > 0 && (
-            <small style={{ color: "#666" }}>
-              {files.length} file{files.length > 1 ? "s" : ""} selected
-            </small>
-          )}
-        </div>
+        <input
+          name="image_url"
+          placeholder="Image URL"
+          value={form.image_url}
+          onChange={handleChange}
+          disabled={isSubmitting}
+        />
         <textarea
           name="content"
           placeholder="Content"

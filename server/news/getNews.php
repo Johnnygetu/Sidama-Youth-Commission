@@ -1,8 +1,5 @@
 <?php
-require_once '../config/config.php';
-require_once '../config/database.php';
-
-header('Content-Type: application/json; charset=utf-8');
+header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
@@ -17,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
         'success' => false,
         'message' => 'Only GET method allowed',
         'data' => null
-    ], JSON_UNESCAPED_UNICODE);
+    ]);
     exit();
 }
 
@@ -27,24 +24,27 @@ if (!$id) {
         'success' => false,
         'message' => 'News ID is required',
         'data' => null
-    ], JSON_UNESCAPED_UNICODE);
+    ]);
     exit();
 }
 
 try {
-    $db = Database::getInstance();
-    $news = $db->fetchOne('SELECT * FROM news WHERE id = ?', [$id]);
+    $pdo = new PDO('mysql:host=eltechsolutions-et.com;dbname=eltechev_sidamaYouthComission;charset=utf8mb4', 'eltechev_syc', 'Qwertyuiop123');
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $pdo->prepare('SELECT * FROM news WHERE id = ?');
+    $stmt->execute([$id]);
+    $news = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!$news) throw new Exception('News not found');
     echo json_encode([
         'success' => true,
         'message' => 'News retrieved successfully',
         'data' => $news
-    ], JSON_UNESCAPED_UNICODE);
+    ]);
 } catch (Exception $e) {
     echo json_encode([
         'success' => false,
         'message' => $e->getMessage(),
         'data' => null
-    ], JSON_UNESCAPED_UNICODE);
+    ]);
 }
  

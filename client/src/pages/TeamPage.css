@@ -1,0 +1,133 @@
+/* Team Page Styles */
+.team-page {
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #1a1a1a;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Scroll Animation Classes */
+.team,
+.advisory-board {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease-out;
+}
+
+.team-member {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.8s ease-out;
+}
+
+.team.animate-in,
+.advisory-board.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.team-member.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered animations for team members */
+.team-member:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.team-member:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.team-member:nth-child(3) {
+  transition-delay: 0.3s;
+}
+.team-member:nth-child(4) {
+  transition-delay: 0.4s;
+}
+.team-member:nth-child(5) {
+  transition-delay: 0.5s;
+}
+.team-member:nth-child(6) {
+  transition-delay: 0.6s;
+}
+
+/* Team Section */
+.team {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 50%, #e2e8f0 100%);
+  position: relative;
+}
+
+.team::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23cbd5e1" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Advisory Board Section */
+.advisory-board {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 50%, #e2e8f0 100%);
+  position: relative;
+}
+
+.advisory-board::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23cbd5e1" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .team-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .team {
+    padding: 60px 0;
+  }
+
+  .team-grid {
+    gap: 1rem;
+  }
+}

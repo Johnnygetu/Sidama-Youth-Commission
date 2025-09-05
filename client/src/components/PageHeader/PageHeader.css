@@ -100,7 +100,7 @@
   }
   
   .page-header {
-    padding: 100px 0 60px;
+    padding: 150px 30px 0px 60px;
     min-height: 50vh;
   }
   
@@ -127,7 +127,7 @@
   }
   
   .page-header {
-    padding: 80px 0 50px;
+    padding: 150px 0 50px;
     min-height: 45vh;
   }
 }
@@ -151,7 +151,7 @@
   }
   
   .page-header {
-    padding: 70px 0 40px;
+    padding: 130px 0 40px;
     min-height: 40vh;
   }
   
@@ -180,7 +180,7 @@
   }
   
   .page-header {
-    padding: 60px 0 30px;
+    padding: 130px 0 30px;
     min-height: 35vh;
   }
 }
@@ -200,7 +200,7 @@
   }
   
   .page-header {
-    padding: 50px 0 25px;
+    padding: 120px 0 25px;
     min-height: 30vh;
   }
 } 

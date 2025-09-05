@@ -12,7 +12,7 @@ const Programs = ({ programsRef, programCardRefs }) => (
           className="program-card" 
           ref={el => programCardRefs && (programCardRefs[0] = el)}
         >
-          <div className="program-icon">🎓</div>
+          <div className="program-icon"><i className="fas fa-graduation-cap"></i></div>
           <h3>Education Support</h3>
           <p>Providing scholarships, tutoring, and educational resources to help youth excel academically.</p>
         </Link>
@@ -21,7 +21,7 @@ const Programs = ({ programsRef, programCardRefs }) => (
           className="program-card" 
           ref={el => programCardRefs && (programCardRefs[1] = el)}
         >
-          <div className="program-icon">💼</div>
+          <div className="program-icon"><i className="fas fa-briefcase"></i></div>
           <h3>Skills Training</h3>
           <p>Vocational training and entrepreneurship programs to prepare youth for the workforce.</p>
         </Link>
@@ -30,7 +30,7 @@ const Programs = ({ programsRef, programCardRefs }) => (
           className="program-card" 
           ref={el => programCardRefs && (programCardRefs[2] = el)}
         >
-          <div className="program-icon">🌱</div>
+          <div className="program-icon"><i className="fas fa-seedling"></i></div>
           <h3>Leadership Development</h3>
           <p>Building confident leaders through workshops, mentoring, and community projects.</p>
         </Link>
@@ -39,7 +39,7 @@ const Programs = ({ programsRef, programCardRefs }) => (
           className="program-card" 
           ref={el => programCardRefs && (programCardRefs[3] = el)}
         >
-          <div className="program-icon">🤝</div>
+          <div className="program-icon"><i className="fas fa-hands-helping"></i></div>
           <h3>Community Service</h3>
           <p>Engaging youth in meaningful community projects that create positive change.</p>
         </Link>

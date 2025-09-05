@@ -29,6 +29,9 @@ const Navbar = () => {
             <Link to="/about" className="nav-link" onClick={handleClose}>About</Link>
           </li>
           <li className="nav-item">
+            <Link to="/team" className="nav-link" onClick={handleClose}>Team</Link>
+          </li>
+          <li className="nav-item">
             <Link to="/news" className="nav-link" onClick={handleClose}>News</Link>
           </li>
           <li className="nav-item">

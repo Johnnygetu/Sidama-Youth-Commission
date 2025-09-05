@@ -6,6 +6,8 @@ import ContactPage from './pages/ContactPage'
 import NewsPage from './pages/NewsPage'
 import NewsDetailPage from './pages/NewsDetailPage'
 import PresidentMessagePage from './pages/PresidentMessagePage'
+import TeamPage from './pages/TeamPage'
+import TeamMemberProfile from './components/AboutPage/TeamMemberProfile/TeamMemberProfile'
 import './App.css'
 import ScrollToTop from './components/ScrollToTop'
 
@@ -17,6 +19,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} index />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/team" element={<TeamPage />} />
+          <Route path="/team-member/:id" element={<TeamMemberProfile />} />
           <Route path="/news" element={<NewsPage />} />
           <Route path="/news/:id" element={<NewsDetailPage />} />
           <Route path="/contact" element={<ContactPage />} />

@@ -124,6 +124,13 @@
   font-size: 1.5rem;
 }
 
+.info-icon i {
+  color: #1a75c4;
+  font-size: 1.2rem;
+  width: 20px;
+  text-align: center;
+}
+
 .map-placeholder {
   text-align: center;
   padding: 2rem;

@@ -7,7 +7,7 @@
 }
 
 .values-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -20,7 +20,8 @@
 }
 
 @keyframes float-bg {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) translateX(0px);
   }
   25% {
@@ -45,7 +46,7 @@
 }
 
 .section-title::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -15px;
   left: 50%;
@@ -62,7 +63,8 @@
     box-shadow: 0 0 10px rgba(26, 117, 196, 0.5);
   }
   to {
-    box-shadow: 0 0 25px rgba(26, 117, 196, 0.8), 0 0 35px rgba(255, 146, 25, 0.6);
+    box-shadow: 0 0 25px rgba(26, 117, 196, 0.8),
+      0 0 35px rgba(255, 146, 25, 0.6);
   }
 }
 
@@ -89,7 +91,7 @@
 }
 
 .value-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -111,16 +113,27 @@
 }
 
 .value-icon {
-  font-size: 4.5rem;
+  font-size: 1.8rem;
   margin-bottom: 2rem;
   display: block;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.value-icon i {
+  color: #1a75c4;
+  font-size: 2.5rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .value-card:hover .value-icon {
-  transform: scale(1.2) rotate(5deg);
-  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+  transform: scale(1.1);
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
+}
+
+.value-card:hover .value-icon i {
+  color: #ff9219;
+  transform: scale(1.1);
 }
 
 .value-card h3 {
@@ -149,16 +162,16 @@
   .values-section {
     padding: 80px 0;
   }
-  
+
   .section-title {
     font-size: 2.5rem;
   }
-  
+
   .values-grid {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
   }
-  
+
   .value-card {
     padding: 2.5rem 2rem;
   }
@@ -168,20 +181,20 @@
   .section-title {
     font-size: 2rem;
   }
-  
+
   .value-card {
     padding: 2rem 1.5rem;
   }
-  
+
   .value-icon {
     font-size: 3rem;
   }
-  
+
   .value-card h3 {
     font-size: 1.4rem;
   }
-  
+
   .value-card p {
     font-size: 1rem;
   }
-} 
+}
