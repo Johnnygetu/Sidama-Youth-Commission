@@ -1,10 +1,13 @@
 /* Global styles */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Montserrat", "Noto Sans Ethiopic", "Noto Sans", system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 html {
@@ -46,12 +49,17 @@ section,
 }
 
 body {
-  font-family: "Noto Sans Ethiopic", "Noto Sans", system-ui, -apple-system,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-family: "Montserrat", "Noto Sans Ethiopic", "Noto Sans", system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
   line-height: 1.6;
   color: #333;
   background-color: #ffffff;
+}
+
+/* Ensure Montserrat is applied to all text elements */
+h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, select, label {
+  font-family: "Montserrat", "Noto Sans Ethiopic", "Noto Sans", system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
 }
 
 #root {

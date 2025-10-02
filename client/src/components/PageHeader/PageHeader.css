@@ -21,6 +21,17 @@
   pointer-events: none;
 }
 
+/* Background image overlay with theme gradient for better text readability */
+.page-header.with-background::before {
+  background: linear-gradient(135deg, 
+    rgba(26, 117, 196, 0.7) 0%, 
+    rgba(15, 74, 138, 0.8) 30%, 
+    rgba(255, 146, 25, 0.6) 70%, 
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  opacity: 1;
+}
+
 .header-content {
   display: flex;
   flex-direction: column;
@@ -47,6 +58,17 @@
   box-shadow: 0 30px 60px rgba(26, 117, 196, 0.25);
 }
 
+/* Enhanced logo styling for background image headers */
+.page-header.with-background .header-logo {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.1);
+  border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.page-header.with-background .header-logo:hover {
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
 .header-title {
   font-size: 3.5rem;
   font-weight: 900;
@@ -64,6 +86,19 @@
   line-height: 1.6;
   font-weight: 400;
   animation: slideInUp 0.8s ease-out 0.2s both;
+}
+
+/* Enhanced text styling for background image headers with gradient */
+.page-header.with-background .header-title {
+  color: #ffffff;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 255, 255, 0.3);
+  font-weight: 900;
+}
+
+.page-header.with-background .header-subtitle {
+  color: #ffffff;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6), 0 0 10px rgba(255, 255, 255, 0.2);
+  font-weight: 500;
 }
 
 /* Animation keyframes */
@@ -100,7 +135,7 @@
   }
   
   .page-header {
-    padding: 150px 30px 0px 60px;
+    padding: 120px 0 60px;
     min-height: 50vh;
   }
   
@@ -127,7 +162,7 @@
   }
   
   .page-header {
-    padding: 150px 0 50px;
+    padding: 120px 0 50px;
     min-height: 45vh;
   }
 }
@@ -151,7 +186,7 @@
   }
   
   .page-header {
-    padding: 130px 0 40px;
+    padding: 110px 0 40px;
     min-height: 40vh;
   }
   
@@ -180,7 +215,7 @@
   }
   
   .page-header {
-    padding: 130px 0 30px;
+    padding: 100px 0 30px;
     min-height: 35vh;
   }
 }
@@ -200,7 +235,7 @@
   }
   
   .page-header {
-    padding: 120px 0 25px;
+    padding: 90px 0 25px;
     min-height: 30vh;
   }
 } 

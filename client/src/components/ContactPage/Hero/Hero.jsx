@@ -8,7 +8,7 @@ const ContactHero = ({ logoImage, heroRef }) => {
         <div className="hero-content">
           <div className="hero-text">
             <h1 className="hero-title">
-              Contact <span className="gradient-text">Sidama Youth Commission</span>
+              Contact <span className="gradient-text">Sidama Youth Council</span>
             </h1>
             <p className="hero-subtitle">
               We would love to hear from you! Reach out for questions, partnership opportunities, or to get involved.
@@ -16,7 +16,7 @@ const ContactHero = ({ logoImage, heroRef }) => {
           </div>
           <div className="hero-image">
             <div className="logo-container">
-              <img src={logoImage} alt="Sidama Youth Commission" className="hero-logo" />
+              <img src={logoImage} alt="Sidama Youth Council" className="hero-logo" />
             </div>
           </div>
         </div>

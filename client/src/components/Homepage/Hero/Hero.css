@@ -119,18 +119,21 @@
 
 }
 
-.btn-secondary {
+.hero-btn {
   background: rgba(26, 117, 196, 0.1);
   color: #1a75c4;
   border: 2px solid #1a75c4;
   backdrop-filter: blur(10px);
+  max-height: 4rem !important;
+  transform: translateY(13px);
 }
 
-.btn-secondary:hover {
+.hero-btn:hover {
   background: linear-gradient(135deg, #1a75c4 0%, #0f4a8a 100%);
   color: white;
-  transform: translateY(-2px) scale(1.01);
-  box-shadow: 0 20px 40px rgba(26, 117, 196, 0.4);
+  transform: translateY(10px) scale(1.001) !important;
+  box-shadow: 0 20px 40px rgba(26, 100, 150, 0.4);
+  transition: 0.7s all;
 }
 
 /* New Clean Logo Styling */

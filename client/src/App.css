@@ -8,5 +8,6 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: inherit;
+  font-family: "Montserrat", "Noto Sans Ethiopic", "Noto Sans", system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }

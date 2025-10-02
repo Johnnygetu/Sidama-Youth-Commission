@@ -18,7 +18,7 @@ const Hero = ({ logoImage, heroRef }) => (
         </p>
         <div className="hero-buttons">
           <Link to="/about" className="btn btn-primary">Learn More</Link>
-          <Link to="/contact" className="btn btn-secondary">Get Involved</Link>
+          <Link to="/contact" className="btn btn-secondary hero-btn">Get Involved</Link>
         </div>
       </div>
         <div className="hero-logo-wrapper">

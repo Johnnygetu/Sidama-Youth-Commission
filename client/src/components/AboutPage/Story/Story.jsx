@@ -49,6 +49,7 @@ const Story = ({ storyRef }) => {
                     console.error('Image failed to load:', e.target.src);
                     e.target.style.display = 'none';
                     const fallback = document.createElement('div');
+                    fallback.className = 'image-placeholder';
                     fallback.innerHTML = '<p style="color: #64748b; text-align: center; padding: 2rem;">Image loading...</p>';
                     fallback.style.cssText = 'position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #64748b;';
                     e.target.parentNode.appendChild(fallback);

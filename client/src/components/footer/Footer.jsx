@@ -39,7 +39,7 @@ const Footer = () => {
               Ethiopia
             </p>
             <p>
-              <i className="fas fa-envelope"></i> info@sryc.org.et
+              <i className="fas fa-envelope"></i> sryc@sidamayouthcouncil.com
             </p>
             <p>
               <i className="fas fa-phone"></i> +251 911 234 567
@@ -57,6 +57,9 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/about">About</Link>
+              </li>
+              <li>
+                <Link to="/team">Team</Link>
               </li>
               <li>
                 <Link to="/news">News</Link>

@@ -99,10 +99,21 @@
   transition: all 0.4s ease;
 }
 
+.group-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.4s ease;
+}
+
 .image-container:hover {
   transform: translateY(-10px);
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+}
 
+.image-container:hover .group-photo {
+  transform: scale(1.05);
 }
 
 .image-placeholder::before {
@@ -158,7 +169,7 @@
 
   }
   
-  .story-text h2::after {
+  .text-content h2::after {
     left: 50%;
     transform: translateX(-50%);
   }
@@ -170,6 +181,17 @@
   
   .image-container {
     height: 300px;
+  }
+}
 
+/* Animation keyframes */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 } 

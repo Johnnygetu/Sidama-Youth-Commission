@@ -10,7 +10,7 @@ const TeamMemberProfile = () => {
   const memberData = location.state?.memberData;
 
   const goBack = () => {
-    navigate("/about");
+    navigate("/team");
   };
 
   if (!memberData) {

@@ -1,5 +1,7 @@
+
 import React, { useState } from "react";
 import "./ContactForm.css";
+import { API_BASE_URL } from "../../../config/api";
 
 const ContactForm = ({ contactFormRef }) => {
   const [formData, setFormData] = useState({
@@ -39,7 +41,7 @@ const ContactForm = ({ contactFormRef }) => {
     try {
       console.log("🌐 Client: Sending POST request to createMessage.php");
       const response = await fetch(
-        "https://phpsample.eltechsolutions-et.com/messages/createMessage.php",
+        `${API_BASE_URL}/messages/createMessage.php`,
         {
           method: "POST",
           headers: {
@@ -175,25 +177,38 @@ const ContactForm = ({ contactFormRef }) => {
             <span className="info-icon">
               <i className="fas fa-envelope"></i>
             </span>
-            <span>info@sidamayouth.org</span>
+            <span>sryc@sidamayouthcouncil.com</span>
           </div>
           <div className="info-item">
             <span className="info-icon">
               <i className="fas fa-phone"></i>
             </span>
-            <span>+251 911 234 567</span>
+            <span>+251977730848</span>
           </div>
           <div className="info-item">
             <span className="info-icon">
               <i className="fas fa-globe"></i>
             </span>
-            <span>www.sidamayouth.org</span>
+            <span>www.sidamayouthcouncil.com</span>
           </div>
-          <div className="map-placeholder">
-            <span role="img" aria-label="map" style={{ fontSize: "2.5rem" }}>
-              <i className="fas fa-map" style={{ color: "#1a75c4" }}></i>
-            </span>
-            <p>Map Location</p>
+          <div className="map-container">
+            <h3>Our Location</h3>
+            <div className="map-wrapper">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.5!2d38.5!3d7.05!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x17b6b8b8b8b8b8b8%3A0x8b8b8b8b8b8b8b8b!2sHawassa%2C%20Ethiopia!5e0!3m2!1sen!2set!4v1234567890123!5m2!1sen!2set"
+                width="100%"
+                height="300"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="SRYC Location - Hawassa, Ethiopia"
+              ></iframe>
+            </div>
+            <p className="map-description">
+              <i className="fas fa-map-marker-alt"></i>
+              Hawassa, Sidama Region, Ethiopia
+            </p>
           </div>
         </div>
       </div>

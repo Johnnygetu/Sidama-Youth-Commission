@@ -593,7 +593,7 @@
 
 @media (max-width: 600px) {
   .container {
-    padding: 0 6px;
+    padding: 0 10px;
   }
   .hero-title,
   .section-title {
@@ -601,7 +601,7 @@
   }
   .btn {
     font-size: 0.95rem;
-    padding: 10px 10px;
+    padding: 10px 15px;
   }
   .hero-logo-container {
     max-width: 120px;
@@ -612,6 +612,6 @@
   }
   .program-card,
   .stat-item {
-    padding: 1rem 0.5rem;
+    padding: 1.5rem 1rem;
   }
 } 

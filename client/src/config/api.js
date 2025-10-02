@@ -1,1 +1,1 @@
-export const API_BASE_URL = "https://phpsample.eltechsolutions-et.com";
+export const API_BASE_URL = "https://api.sidamayouthcouncil.com";
