@@ -4,11 +4,12 @@ define('APP_NAME', 'Sidama Youth Commission');
 define('APP_VERSION', '1.0.0');
 define('APP_ENV', 'development'); // development, production
 
-// Database configuration
+// Database configuration - Local database on same server
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'sidama_youth_db');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_PORT', '3306'); // Default MySQL port
+define('DB_NAME', 'sidamaeb_youth');
+define('DB_USER', 'sidamaeb_user');
+define('DB_PASS', 'qwert.12345sryc');
 define('DB_CHARSET', 'utf8mb4');
 
 // File upload configuration

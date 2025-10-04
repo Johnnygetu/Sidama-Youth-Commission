@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebook,
   faTwitter,
-  faInstagram,
+  faTelegram,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
 import { Link } from "react-router-dom";
@@ -84,11 +84,11 @@ const Footer = () => {
               <a href="#" className="social-link" aria-label="Facebook">
                 <FontAwesomeIcon icon={faFacebook} />
               </a>
-              <a href="#" className="social-link" aria-label="Twitter">
+              <a href="#" className="social-link" aria-label="X">
                 <FontAwesomeIcon icon={faTwitter} />
               </a>
-              <a href="#" className="social-link" aria-label="Instagram">
-                <FontAwesomeIcon icon={faInstagram} />
+              <a href="https://t.me/sidamayouthcouncil" className="social-link" aria-label="Telegram" target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={faTelegram} />
               </a>
               <a href="#" className="social-link" aria-label="LinkedIn">
                 <FontAwesomeIcon icon={faLinkedin} />

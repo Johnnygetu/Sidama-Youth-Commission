@@ -32,9 +32,7 @@ function NewsPage() {
             }),
             author: article.author,
             category: "News", // Default category since it's not in the database
-            image:
-              article.image_url ||
-              "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=200&fit=crop",
+            image: article.image_url || null,
             fullContent: article.content
               .split("\n")
               .filter((paragraph) => paragraph.trim() !== ""),
@@ -126,8 +124,10 @@ function NewsPage() {
           justifyContent: "space-between",
           alignItems: "center",
           marginBottom: "2rem",
+          flexWrap: "wrap",
+          gap: "1rem",
         }}>
-        <h2>News List</h2>
+        <h2 style={{ fontSize: "1.5rem", margin: 0 }}>News List</h2>
         <button
           onClick={() => navigate("/news/add")}
           style={{
@@ -138,6 +138,7 @@ function NewsPage() {
             padding: "0.5rem 1.2rem",
             fontSize: "1rem",
             cursor: "pointer",
+            whiteSpace: "nowrap",
           }}>
           + Add News
         </button>
@@ -149,58 +150,94 @@ function NewsPage() {
       ) : (
       <div style={{ display: "grid", gap: "1.5rem", width: "100%" }}>
         {news.map((article, idx) => (
-          <div
-            key={article.id}
-            className="news-card"
-            ref={(el) => (cardRefs.current[idx] = el)}
-              style={{
-                width: "100%",
-                cursor: "pointer",
-                transition: "transform 0.2s ease, box-shadow 0.2s ease",
-                position: "relative",
-              }}
-              onClick={() => navigate(`/news/edit/${article.id}`)}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-2px)";
-                e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.15)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "none";
-              }}>
+            <div
+              key={article.id}
+              className="news-card"
+              ref={(el) => (cardRefs.current[idx] = el)}
+                style={{
+                  width: "100%",
+                  transition: "transform 0.2s ease, box-shadow 0.2s ease",
+                  position: "relative",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                  e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.15)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "none";
+                }}>
             <div
               className="news-image"
-              style={{ backgroundImage: `url(${article.image})` }}></div>
-            <div className="news-content" style={{ flex: 1 }}>
-              <h3>{article.title}</h3>
-              <div className="news-meta">
+              style={{ 
+                backgroundImage: article.image ? `url(${article.image})` : 'none',
+                backgroundColor: article.image ? 'transparent' : '#f5f5f5',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#999',
+                fontSize: '0.9rem'
+              }}>
+              {!article.image && 'No Image'}
+            </div>
+            <div className="news-content" style={{ flex: 1, paddingRight: "140px" }}>
+              <h3 style={{ wordBreak: "break-word", marginTop: 0, marginBottom: "0.5rem" }}>{article.title}</h3>
+              <div className="news-meta" style={{ wordBreak: "break-word", marginBottom: "0.5rem" }}>
                 {article.day} {article.month} • {article.author} •{" "}
                 {article.category}
               </div>
-              <p style={{ margin: 0 }}>{article.fullContent[0]}</p>
+              <p style={{ margin: 0, wordBreak: "break-word" }}>{article.fullContent[0]}</p>
             </div>
-              <button
-                onClick={(e) => handleDelete(article.id, e)}
-                disabled={deletingId === article.id}
-                style={{
-                  position: "absolute",
-                  top: "10px",
-                  right: "10px",
-                  background: "#dc3545",
-                  color: "#fff",
-                  border: "none",
-                  borderRadius: "4px",
-                  padding: "0.5rem 0.75rem",
-                  fontSize: "0.875rem",
-                  cursor: deletingId === article.id ? "not-allowed" : "pointer",
-                  opacity: deletingId === article.id ? 0.6 : 1,
-                  zIndex: 10,
-                  minWidth: "60px",
-                }}
-                title="Delete this news article"
-              >
-                {deletingId === article.id ? "..." : "Delete"}
-              </button>
+              <div style={{
+                position: "absolute",
+                top: "10px",
+                right: "10px",
+                display: "flex",
+                gap: "0.4rem",
+                zIndex: 10,
+                flexDirection: "column",
+                alignItems: "flex-end",
+              }}>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate(`/news/edit/${article.id}`);
+                  }}
+                  style={{
+                    background: "#1a75c4",
+                    color: "#fff",
+                    border: "none",
+                    borderRadius: "4px",
+                    padding: "0.4rem 0.6rem",
+                    fontSize: "0.8rem",
+                    cursor: "pointer",
+                    minWidth: "50px",
+                    boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+                  }}
+                  title="Edit this news article"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={(e) => handleDelete(article.id, e)}
+                  disabled={deletingId === article.id}
+                  style={{
+                    background: "#dc3545",
+                    color: "#fff",
+                    border: "none",
+                    borderRadius: "4px",
+                    padding: "0.4rem 0.6rem",
+                    fontSize: "0.8rem",
+                    cursor: deletingId === article.id ? "not-allowed" : "pointer",
+                    opacity: deletingId === article.id ? 0.6 : 1,
+                    minWidth: "50px",
+                    boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+                  }}
+                  title="Delete this news article"
+                >
+                  {deletingId === article.id ? "..." : "Delete"}
+                </button>
+              </div>
           </div>
         ))}
       </div>

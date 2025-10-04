@@ -8,15 +8,70 @@ class Database
 
     private function __construct()
     {
+        // Try the configured connection first
         try {
-            $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
+            $dsn = "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
             $this->connection = new PDO($dsn, DB_USER, DB_PASS, [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
                 PDO::ATTR_EMULATE_PREPARES => false,
+                PDO::ATTR_TIMEOUT => 30,
+                PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES " . DB_CHARSET,
             ]);
+            
+            // Test the connection
+            $this->connection->query("SELECT 1");
+            
         } catch (PDOException $e) {
-            throw new Exception("Database connection failed: " . $e->getMessage());
+            // If configured connection fails, try fallback methods
+            error_log("Primary database connection failed: " . $e->getMessage());
+            
+            // Try fallback connection methods
+            $fallbackMethods = [
+                ['host' => 'localhost', 'port' => '3306', 'user' => 'root', 'pass' => '', 'db' => DB_NAME],
+                ['host' => '127.0.0.1', 'port' => '3306', 'user' => 'root', 'pass' => '', 'db' => DB_NAME],
+                ['host' => 'localhost', 'port' => '3306', 'user' => 'root', 'pass' => 'root', 'db' => DB_NAME],
+                ['host' => 'localhost', 'port' => '3306', 'user' => 'root', 'pass' => 'password', 'db' => DB_NAME],
+                ['host' => 'localhost', 'port' => '3306', 'user' => 'root', 'pass' => '', 'db' => null], // Try without database first
+            ];
+            
+            $connected = false;
+            foreach ($fallbackMethods as $method) {
+                try {
+                    if ($method['db']) {
+                        $dsn = "mysql:host={$method['host']};port={$method['port']};dbname={$method['db']};charset=utf8mb4";
+                    } else {
+                        $dsn = "mysql:host={$method['host']};port={$method['port']};charset=utf8mb4";
+                    }
+                    
+                    $this->connection = new PDO($dsn, $method['user'], $method['pass'], [
+                        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                        PDO::ATTR_EMULATE_PREPARES => false,
+                        PDO::ATTR_TIMEOUT => 10,
+                    ]);
+                    
+                    // If we connected without database, create it
+                    if (!$method['db']) {
+                        $this->connection->exec("CREATE DATABASE IF NOT EXISTS `" . DB_NAME . "` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
+                        $this->connection->exec("USE `" . DB_NAME . "`");
+                    }
+                    
+                    // Test the connection
+                    $this->connection->query("SELECT 1");
+                    $connected = true;
+                    error_log("Database connection successful using fallback: {$method['host']}:{$method['port']} with user {$method['user']}");
+                    break;
+                    
+                } catch (PDOException $e) {
+                    error_log("Fallback connection failed for {$method['host']}:{$method['port']} with user {$method['user']}: " . $e->getMessage());
+                    continue;
+                }
+            }
+            
+            if (!$connected) {
+                throw new Exception("All database connection methods failed. Please check your MySQL installation and configuration.");
+            }
         }
     }
 

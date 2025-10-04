@@ -99,7 +99,7 @@ function MessagesPage() {
 
   return (
     <div style={{ width: "100%" }}>
-      <h2 style={{ marginBottom: "2rem" }}>Messages ({messages.length})</h2>
+      <h2 style={{ marginBottom: "2rem", fontSize: "1.5rem" }}>Messages ({messages.length})</h2>
       {messages.length === 0 ? (
         <div style={{ textAlign: "center", padding: "2rem", color: "#666" }}>
           No messages found.
@@ -138,8 +138,10 @@ function MessagesPage() {
                     justifyContent: "space-between",
                     alignItems: "flex-start",
                     marginBottom: "0.5rem",
+                    flexWrap: "wrap",
+                    gap: "0.5rem",
                   }}>
-              <h3 style={{ margin: 0, color: "#388e3c" }}>{msg.sender}</h3>
+              <h3 style={{ margin: 0, color: "#388e3c", wordBreak: "break-word" }}>{msg.sender}</h3>
                   <span
                     style={{
                       fontSize: "0.75rem",
@@ -157,6 +159,7 @@ function MessagesPage() {
                           : msg.status === "replied"
                           ? "#4caf50"
                           : "#666",
+                      whiteSpace: "nowrap",
                     }}>
                     {msg.status}
                   </span>
@@ -167,6 +170,7 @@ function MessagesPage() {
                     marginBottom: 8,
                     fontSize: "0.875rem",
                     color: "#666",
+                    wordBreak: "break-word",
                   }}>
                   <strong>Subject:</strong> {msg.subject} •{" "}
                   <strong>Email:</strong> {msg.email} • {msg.date}

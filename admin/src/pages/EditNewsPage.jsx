@@ -12,8 +12,9 @@ function EditNewsPage() {
     title: "",
     author: "",
     content: "",
-    image_url: "",
   });
+  const [files, setFiles] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Fetch news data for editing
   useEffect(() => {
@@ -30,7 +31,6 @@ function EditNewsPage() {
             title: result.data.title,
             author: result.data.author,
             content: result.data.content,
-            image_url: result.data.image_url || "",
           });
         } else {
           setError(result.message || "Failed to fetch news");
@@ -58,18 +58,25 @@ function EditNewsPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  const handleFileChange = (e) => {
+    const selected = Array.from(e.target.files || []);
+    setFiles(selected);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     try {
+      const fd = new FormData();
+      fd.append("id", id);
+      fd.append("title", form.title);
+      fd.append("author", form.author);
+      fd.append("content", form.content);
+      files.forEach((file) => fd.append("images[]", file));
+
       const response = await fetch(`${API_BASE_URL}/news/updateNews.php`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: id,
-          ...form,
-        }),
+        method: "POST",
+        body: fd,
       });
 
       const result = await response.json();
@@ -82,6 +89,8 @@ function EditNewsPage() {
     } catch (err) {
       setError("Failed to connect to the server");
       console.error("Error updating news:", err);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -129,6 +138,7 @@ function EditNewsPage() {
           value={form.title}
           onChange={handleChange}
           required
+          disabled={isSubmitting}
         />
         <input
           name="author"
@@ -136,19 +146,30 @@ function EditNewsPage() {
           value={form.author}
           onChange={handleChange}
           required
+          disabled={isSubmitting}
         />
-        <input
-          name="image_url"
-          placeholder="Image URL"
-          value={form.image_url}
-          onChange={handleChange}
-        />
+        <div style={{ display: "grid", gap: "0.5rem" }}>
+          <label style={{ fontWeight: 600 }}>Images (you can select multiple)</label>
+          <input
+            type="file"
+            accept="image/*"
+            multiple
+            onChange={handleFileChange}
+            disabled={isSubmitting}
+          />
+          {files?.length > 0 && (
+            <small style={{ color: "#666" }}>
+              {files.length} file{files.length > 1 ? "s" : ""} selected
+            </small>
+          )}
+        </div>
         <textarea
           name="content"
           placeholder="Content"
           value={form.content}
           onChange={handleChange}
           required
+          disabled={isSubmitting}
           style={{
             minHeight: "150px",
             resize: "vertical",
@@ -159,10 +180,16 @@ function EditNewsPage() {
           }}
         />
         <div
-          style={{ display: "flex", justifyContent: "flex-end", gap: "1rem" }}>
+          style={{ 
+            display: "flex", 
+            justifyContent: "flex-end", 
+            gap: "1rem",
+            flexWrap: "wrap"
+          }}>
           <button
             type="button"
             onClick={() => navigate("/news")}
+            disabled={isSubmitting}
             style={{
               background: "#eee",
               color: "#333",
@@ -170,12 +197,22 @@ function EditNewsPage() {
               borderRadius: 4,
               padding: "0.5rem 1.2rem",
               fontSize: "1rem",
-              cursor: "pointer",
+              cursor: isSubmitting ? "not-allowed" : "pointer",
+              whiteSpace: "nowrap",
+              opacity: isSubmitting ? 0.6 : 1,
             }}>
             Cancel
           </button>
-          <button type="submit" className="premium-btn">
-            Update
+          <button 
+            type="submit" 
+            className="premium-btn"
+            disabled={isSubmitting}
+            style={{ 
+              whiteSpace: "nowrap",
+              opacity: isSubmitting ? 0.6 : 1,
+              cursor: isSubmitting ? "not-allowed" : "pointer",
+            }}>
+            {isSubmitting ? "Updating..." : "Update"}
           </button>
         </div>
       </form>

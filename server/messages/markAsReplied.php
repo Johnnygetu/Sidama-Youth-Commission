@@ -1,4 +1,7 @@
 <?php
+// Include centralized CORS configuration
+require_once '../config/cors.php';
+
 // Enable error logging
 error_reporting(E_ALL);
 ini_set('log_errors', 1);
@@ -23,17 +26,6 @@ function logReply($message, $data = null)
 logReply("🔄 Server: Reply sending endpoint accessed");
 logReply("📡 Server: Request method", $_SERVER['REQUEST_METHOD']);
 logReply("📡 Server: Request headers", getallheaders());
-
-header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type, Authorization');
-
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    logReply("🔄 Server: OPTIONS request handled");
-    http_response_code(204);
-    exit();
-}
 
 if ($_SERVER['REQUEST_METHOD'] !== 'PUT') {
     logReply("❌ Server: Invalid request method", $_SERVER['REQUEST_METHOD']);
@@ -74,15 +66,14 @@ logReply("✅ Server: Input validation passed");
 
 try {
     logReply("🔗 Server: Connecting to database");
-    $pdo = new PDO('mysql:host=eltechsolutions-et.com;dbname=eltechev_sidamaYouthComission;charset=utf8mb4', 'eltechev_syc', 'Qwertyuiop123');
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    require_once '../config/config.php';
+    require_once '../config/database.php';
+    $db = Database::getInstance();
     logReply("✅ Server: Database connection established");
 
     // Get message details for email
     logReply("🔍 Server: Fetching message details", ['id' => $input['id']]);
-    $stmt = $pdo->prepare('SELECT name, email, subject, message FROM contact_messages WHERE id = ?');
-    $stmt->execute([$input['id']]);
-    $message = $stmt->fetch(PDO::FETCH_ASSOC);
+    $message = $db->fetchOne('SELECT name, email, subject, message FROM contact_messages WHERE id = :id', ['id' => $input['id']]);
 
     if (!$message) {
         logReply("❌ Server: Message not found", ['id' => $input['id']]);
@@ -98,7 +89,7 @@ try {
 
     // Update message status to 'replied' first
     logReply("🔄 Server: Updating message status to 'replied'");
-    $pdo->prepare('UPDATE contact_messages SET status = ?, updated_at = NOW() WHERE id = ?')->execute(['replied', $input['id']]);
+    $db->update('contact_messages', ['status' => 'replied', 'updated_at' => date('Y-m-d H:i:s')], 'id = :id', ['id' => $input['id']]);
     logReply("✅ Server: Message status updated successfully");
 
     // Send email reply
@@ -141,15 +132,8 @@ try {
         // Delete the message from database after successful email sending
         logReply("🗑️ Server: Deleting message from database after successful reply");
         try {
-            $deleteStmt = $pdo->prepare('DELETE FROM contact_messages WHERE id = ?');
-            $deleteStmt->execute([$input['id']]);
-            $deletedRows = $deleteStmt->rowCount();
-            
-            if ($deletedRows > 0) {
-                logReply("✅ Server: Message deleted successfully from database");
-            } else {
-                logReply("⚠️ Server: Message deletion failed - no rows affected");
-            }
+            $db->delete('contact_messages', 'id = ?', [$input['id']]);
+            logReply("✅ Server: Message deleted successfully from database");
         } catch (Exception $e) {
             logReply("💥 Server: Message deletion exception", [
                 'error' => $e->getMessage(),

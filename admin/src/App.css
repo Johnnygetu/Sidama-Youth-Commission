@@ -14,11 +14,37 @@
   padding: 1.5rem 2rem 1rem 2rem;
   background: #f9f9f9;
   border-bottom: 1px solid #eee;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .nav-left {
   display: flex;
   gap: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.admin-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-right: 1rem;
+}
+
+.logo-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(26, 117, 196, 0.1);
+}
+
+.logo-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a75c4;
+  white-space: nowrap;
 }
 
 .nav-right {
@@ -34,6 +60,7 @@
   padding: 0.5rem 1.2rem;
   border-radius: 4px;
   transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
 }
 
 .admin-nav a.active,
@@ -52,6 +79,7 @@
   font-size: 1rem;
   font-weight: 500;
   transition: background 0.2s;
+  white-space: nowrap;
 }
 
 .logout-button:hover {
@@ -68,12 +96,102 @@ main {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
+/* Responsive design for main content */
+@media (max-width: 768px) {
+  .admin-nav {
+    padding: 1rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  
+  .nav-left {
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .admin-logo {
+    margin-right: 0;
+  }
+  
+  .logo-img {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .logo-text {
+    font-size: 1rem;
+  }
+  
+  .nav-right {
+    justify-content: center;
+  }
+  
+  .admin-nav a {
+    font-size: 1rem;
+    padding: 0.4rem 1rem;
+    text-align: center;
+  }
+  
+  .logout-button {
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+  }
+  
+  main {
+    margin: 1rem;
+    padding: 1.5rem;
+    border-radius: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-nav {
+    padding: 0.8rem;
+  }
+  
+  .nav-left {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .admin-logo {
+    order: -1;
+    margin-bottom: 0.5rem;
+  }
+  
+  .logo-img {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .logo-text {
+    font-size: 0.9rem;
+  }
+  
+  .admin-nav a {
+    font-size: 0.9rem;
+    padding: 0.3rem 0.8rem;
+  }
+  
+  .logout-button {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.8rem;
+  }
+  
+  main {
+    margin: 0.5rem;
+    padding: 1rem;
+  }
+}
+
 .news-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   max-width: 400px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .news-form input,
@@ -84,6 +202,8 @@ main {
   border-radius: 4px;
   background: #fff;
   color: #333;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .news-form button[type="submit"] {
@@ -139,18 +259,70 @@ main {
   background-size: cover;
   background-position: center;
   box-shadow: 0 2px 8px rgba(26, 117, 196, 0.1);
+  flex-shrink: 0;
 }
 
 .news-content h3 {
   margin: 0;
   font-size: 1.2rem;
   color: #1a75c4;
+  word-wrap: break-word;
 }
 
 .news-meta {
   font-size: 0.95rem;
   color: #888;
   margin: 0.2rem 0 0.5rem 0;
+  word-wrap: break-word;
+}
+
+/* Responsive design for news cards and forms */
+@media (max-width: 768px) {
+  .news-card {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .news-image {
+    width: 100%;
+    max-width: 200px;
+    height: 120px;
+    margin: 0 auto;
+  }
+  
+  .news-content h3 {
+    font-size: 1.1rem;
+  }
+  
+  .news-meta {
+    font-size: 0.9rem;
+  }
+  
+  .news-form {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .news-card {
+    padding: 0.8rem;
+    gap: 0.8rem;
+  }
+  
+  .news-image {
+    height: 100px;
+  }
+  
+  .news-content h3 {
+    font-size: 1rem;
+  }
+  
+  .news-meta {
+    font-size: 0.85rem;
+  }
 }
 
 .premium-form {
@@ -168,7 +340,8 @@ main {
   gap: 1.2rem;
 }
 
-.premium-form input {
+.premium-form input,
+.premium-form textarea {
   font-size: 1rem;
   padding: 0.7rem;
   border: 1px solid #c7d0db;
@@ -176,9 +349,12 @@ main {
   background: #fff;
   color: #333;
   transition: border 0.2s;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.premium-form input:focus {
+.premium-form input:focus,
+.premium-form textarea:focus {
   border: 1.5px solid #1a75c4;
   outline: none;
 }
@@ -199,4 +375,102 @@ main {
 .premium-form button:hover {
   background: linear-gradient(90deg, #ff9219 0%, #1a75c4 100%);
   box-shadow: 0 4px 16px rgba(26, 117, 196, 0.16);
+}
+
+/* Responsive design for premium forms */
+@media (max-width: 768px) {
+  .premium-form {
+    margin: 1rem;
+    padding: 1.5rem;
+    max-width: 100%;
+  }
+  
+  .premium-form input,
+  .premium-form textarea {
+    font-size: 0.95rem;
+    padding: 0.6rem;
+  }
+  
+  .premium-form button {
+    font-size: 0.95rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .premium-form {
+    margin: 0.5rem;
+    padding: 1rem;
+    gap: 1rem;
+  }
+  
+  .premium-form input,
+  .premium-form textarea {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+  
+  .premium-form button {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Additional responsive styles for message detail page */
+@media (max-width: 768px) {
+  .message-detail-container {
+    padding: 1rem !important;
+  }
+  
+  .message-card,
+  .reply-card {
+    padding: 1.5rem !important;
+  }
+  
+  .message-header h2 {
+    font-size: 1.2rem !important;
+  }
+  
+  .message-meta {
+    font-size: 0.8rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .message-detail-container {
+    padding: 0.5rem !important;
+  }
+  
+  .message-card,
+  .reply-card {
+    padding: 1rem !important;
+  }
+  
+  .message-header h2 {
+    font-size: 1.1rem !important;
+  }
+  
+  .message-meta {
+    font-size: 0.75rem !important;
+  }
+  
+  .button-group {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+  
+  .button-group button {
+    width: 100% !important;
+  }
+  
+  .president-image {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  
+  .message-header-flex {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+  }
 }

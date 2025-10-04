@@ -1,13 +1,6 @@
 <?php
-header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type, Authorization');
-
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(204);
-    exit();
-}
+// Include centralized CORS configuration
+require_once '../config/cors.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'DELETE') {
     echo json_encode([
@@ -29,22 +22,27 @@ if (!$input || !isset($input['id'])) {
 }
 
 try {
-    $pdo = new PDO('mysql:host=eltechsolutions-et.com;dbname=eltechev_sidamaYouthComission;charset=utf8mb4', 'eltechev_syc', 'Qwertyuiop123');
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $pdo->prepare('SELECT id FROM contact_messages WHERE id = ?');
-    $stmt->execute([$input['id']]);
-    if (!$stmt->fetch()) throw new Exception('Message not found');
-    $pdo->prepare('DELETE FROM contact_messages WHERE id = ?')->execute([$input['id']]);
+    require_once '../config/config.php';
+    require_once '../config/database.php';
+    $db = Database::getInstance();
+    
+    // Check if message exists
+    $existing = $db->fetchOne('SELECT id FROM contact_messages WHERE id = :id', ['id' => $input['id']]);
+    if (!$existing) throw new Exception('Message not found');
+    
+    // Delete the message
+    $db->delete('contact_messages', 'id = :id', ['id' => $input['id']]);
+    
     echo json_encode([
         'success' => true,
         'message' => 'Message deleted successfully',
         'data' => ['id' => $input['id']]
-    ]);
+    ], JSON_UNESCAPED_UNICODE);
 } catch (Exception $e) {
     echo json_encode([
         'success' => false,
         'message' => $e->getMessage(),
         'data' => null
-    ]);
+    ], JSON_UNESCAPED_UNICODE);
 }
  

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "../config/api";
+// Using public path for the president image
+const presidentImage = "/president.jpg";
 
 function MessageDetailPage() {
   const { id } = useParams();
@@ -168,6 +170,7 @@ function MessageDetailPage() {
 
   return (
     <div
+      className="message-detail-container"
       style={{
         width: "100%",
         maxWidth: "800px",
@@ -176,7 +179,13 @@ function MessageDetailPage() {
       }}>
       {/* Header with Back Button */}
       <div
-        style={{ display: "flex", alignItems: "center", marginBottom: "2rem" }}>
+        style={{ 
+          display: "flex", 
+          alignItems: "center", 
+          marginBottom: "2rem",
+          flexWrap: "wrap",
+          gap: "1rem"
+        }}>
         <button
           onClick={() => navigate("/messages")}
           style={{
@@ -186,14 +195,16 @@ function MessageDetailPage() {
             cursor: "pointer",
             color: "#666",
             marginRight: "1rem",
+            whiteSpace: "nowrap",
           }}>
           ←
         </button>
-        <h1 style={{ margin: 0, color: "#333" }}>Message Details</h1>
+        <h1 style={{ margin: 0, color: "#333", fontSize: "1.5rem" }}>Message Details</h1>
       </div>
 
       {/* Message Card */}
       <div
+        className="message-card"
         style={{
           backgroundColor: "white",
           borderRadius: "12px",
@@ -203,9 +214,36 @@ function MessageDetailPage() {
         }}>
         {/* Message Header */}
         <div style={{ marginBottom: "2rem" }}>
-          <h2 style={{ margin: "0 0 1rem 0", color: "#333" }}>
-            {message.subject}
-          </h2>
+          <div className="message-header-flex" style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1rem" }}>
+            <img
+              src={presidentImage}
+              alt="President Yishak Sanbure"
+              className="president-image"
+              style={{
+                width: "60px",
+                height: "60px",
+                borderRadius: "50%",
+                objectFit: "cover",
+                border: "3px solid #1a75c4",
+                boxShadow: "0 2px 8px rgba(26, 117, 196, 0.2)"
+              }}
+              onError={(e) => {
+                console.log("Image failed to load:", e.target.src);
+                e.target.style.display = 'none';
+              }}
+              onLoad={() => {
+                console.log("Image loaded successfully");
+              }}
+            />
+            <div>
+              <h2 style={{ margin: "0 0 0.5rem 0", color: "#333", wordBreak: "break-word" }}>
+                {message.subject}
+              </h2>
+              <p style={{ margin: 0, color: "#1a75c4", fontWeight: "500", fontSize: "0.9rem" }}>
+                Message from President Yishak Sanbure
+              </p>
+            </div>
+          </div>
           <div
             style={{
               display: "flex",
@@ -214,10 +252,10 @@ function MessageDetailPage() {
               fontSize: "0.9rem",
               color: "#666",
             }}>
-            <div>
+            <div style={{ wordBreak: "break-word" }}>
               <strong>From:</strong> {message.sender}
             </div>
-            <div>
+            <div style={{ wordBreak: "break-word" }}>
               <strong>Email:</strong> {message.email}
             </div>
             <div>
@@ -240,6 +278,7 @@ function MessageDetailPage() {
                       : message.status === "replied"
                       ? "#4caf50"
                       : "#666",
+                  whiteSpace: "nowrap",
                 }}>
                 {message.status}
               </span>
@@ -265,6 +304,7 @@ function MessageDetailPage() {
 
       {/* Reply Section */}
       <div
+        className="reply-card"
         style={{
           backgroundColor: "white",
           borderRadius: "12px",
@@ -289,7 +329,11 @@ function MessageDetailPage() {
           }}
           disabled={isReplying}
         />
-        <div style={{ display: "flex", gap: "1rem" }}>
+        <div className="button-group" style={{ 
+          display: "flex", 
+          gap: "1rem",
+          flexWrap: "wrap"
+        }}>
           <button
             onClick={handleReply}
             disabled={isReplying || !replyText.trim()}
@@ -303,6 +347,7 @@ function MessageDetailPage() {
               cursor:
                 isReplying || !replyText.trim() ? "not-allowed" : "pointer",
               opacity: isReplying || !replyText.trim() ? 0.6 : 1,
+              whiteSpace: "nowrap",
             }}>
             {isReplying ? "Sending..." : "Send Reply"}
           </button>
@@ -316,6 +361,7 @@ function MessageDetailPage() {
               padding: "0.75rem 1.5rem",
               fontSize: "1rem",
               cursor: "pointer",
+              whiteSpace: "nowrap",
             }}>
             Back to Messages
           </button>
@@ -326,4 +372,3 @@ function MessageDetailPage() {
 }
 
 export default MessageDetailPage;
- 
