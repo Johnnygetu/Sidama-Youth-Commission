@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './PresidentMessagePage.css';
 import logoImage from '/images/mekerbet-logo.jpg';
 import { Navbar, Footer } from '../components';
+import yishakImage from '../assets/photo_2025-08-14_11-53-35.jpg';
 
 const PresidentMessagePage = () => {
   const messageRef = useRef(null);
@@ -49,10 +50,7 @@ const PresidentMessagePage = () => {
           <div className="message-content">
             <div className="president-info">
               <div className="president-photo">
-                <div className="photo-placeholder">
-                  <span>President Photo</span>
-                  <p>Photo of Mr. Yishak Sanbura</p>
-                </div>
+                <img src={yishakImage} alt="Mr. Yishak Sanbura" className="president-photo-img" />
               </div>
               <div className="president-details">
                 <h2>Mr. Yishak Sanbura</h2>

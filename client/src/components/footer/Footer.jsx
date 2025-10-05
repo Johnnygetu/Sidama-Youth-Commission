@@ -81,7 +81,7 @@ const Footer = () => {
           <div className="footer-section">
             <h4>Follow Us</h4>
             <div className="social-links">
-              <a href="#" className="social-link" aria-label="Facebook">
+              <a href="https://www.facebook.com/share/1XgGjHS4MQ/" className="social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon={faFacebook} />
               </a>
               <a href="#" className="social-link" aria-label="X">

@@ -32,6 +32,14 @@
   margin-bottom: 25px;
 }
 
+.president-photo-img {
+  width: 200px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
 .photo-placeholder {
   width: 200px;
   height: 250px;
@@ -171,7 +179,8 @@
     padding: 25px;
   }
   
-  .photo-placeholder {
+  .photo-placeholder,
+  .president-photo-img {
     width: 150px;
     height: 200px;
   }
@@ -202,7 +211,8 @@
     padding: 20px;
   }
   
-  .photo-placeholder {
+  .photo-placeholder,
+  .president-photo-img {
     width: 120px;
     height: 160px;
     font-size: 12px;

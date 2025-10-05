@@ -7,6 +7,8 @@ import vicePresidentImage from '../../../assets/vice president.jpg';
 import deputyVicePresidentImage from '../../../assets/vice president2.jpg';
 import './Team.css';
 import abdulfetahImage from '../../../assets/executive.jpg';
+import bontuImage from '../../../assets/bontu.jpg';
+import bereketImage from '../../../assets/bereket.jpg';
 
 const Team = ({ teamRef }) => {
   const navigate = useNavigate();
@@ -22,6 +24,40 @@ const Team = ({ teamRef }) => {
       fullBio: "My name is Yishak Sanbure, and I currently serve as the President of the Sidama Region Youth Council. I have previously worked as the Communication Executive Director for the Hawassa City Youth Association, where I gained valuable experience in youth engagement and community outreach. Additionally, I held leadership roles as a Team Leader and President within the Hawassa Youth Federation.\n\nI hold a degree in Geomatics Engineering from Wachemo University, which complements my practical experience in community development. Currently, I am also the Executive Director for Business and Commercial Development in the Haqi Dare Sub-City of Hawassa City, where I focus on fostering economic growth and opportunities for the community.",
       email: "yishak.sanbure@sryc.org",
       phone: "+251 922 345 678"
+    },
+    // Advisory Board - Head of Women and Gender Affairs
+    {
+      id: 7,
+      name: "Bontu Bogale Tenkolu",
+      title: "Head of Women and Gender Affairs, Sidama Regional Youth Council",
+      photo: bontuImage,
+      expertise: [
+        "Women Empowerment",
+        "Community Health",
+        "Youth-Friendly Services",
+        "Program Leadership"
+      ],
+      fullBio:
+        "Bontu Bogale is a dedicated leader serving as the Head of the Women and Gender Affairs Department within the Sidama Regional Youth Council. With a lifelong commitment to empowering women, Bontu works tirelessly to uplift those who have been overlooked, helping them realize their full potential.\n\nWith a professional background in Pharmacy, she has made significant contributions to health services and various community projects across the Sidama region. Her initiatives include Youth-Friendly Services, Integrated Package Delivery (IPD), and collaborations with organizations such as Save the Children, DOT, and Mary Joy Institution.\n\nAs the founder of the Good Seed Charity Organization, Bontu has positively impacted the lives of over 200 vulnerable individuals and leads a network of more than 300 active members. She also serves as the Sidama Region Women’s Voice Coordinator and holds an executive position within the Hawassa City Youth Federation.\n\nVision: Bontu envisions a future where women are empowered, individuals in need receive support, and youth transition from opportunity seekers to opportunity creators. She firmly believes that everyone possesses unique skills, wisdom, and knowledge that, when shared, can contribute to building a stronger and more prosperous nation.",
+      email: "bontu.bogale@sryc.org",
+      phone: "+251 900 000 008"
+    },
+    // Advisory Board - Secretary, SRYC (from provided details)
+    {
+      id: 8,
+      name: "Mr. Bereket Beyene Kekebo",
+      title: "Secretary of the Sidama Region Youth Council",
+      photo: bereketImage,
+      expertise: [
+        "Public Administration",
+        "Youth Leadership",
+        "Organizational Development",
+        "Community Empowerment"
+      ],
+      fullBio:
+        "Mr. Bereket Beyene Kekebo is a dedicated public servant and an active advocate for youth leadership and community empowerment in the Sidama Region. He holds a Bachelor’s degree in Public Administration and Development Management as well as a Master’s degree in Business Administration (MBA), which provide him with a strong foundation in governance, leadership, and organizational development.\n\nMr. Bereket’s career reflects his deep commitment to advancing youth participation in decision-making and development processes. Over the years, he has taken on significant roles that allow him to contribute both regionally and nationally.\n\nCurrently, Mr. Bereket serves as the Secretary of the Sidama Region Youth Council. He is also the President of the Sidama Region Youth Association, a member of the Federal Youth Council, and an active member of the Sidama Youth Federation. In addition, he serves as the Head of Hawassa City Administration Tula Sub-City Youth Affairs, where he works directly with local communities to create opportunities for young people to thrive.\n\nMr. Bereket’s academic background and professional experience enable him to address pressing challenges faced by the youth while fostering opportunities in leadership, education, and entrepreneurship. A strong believer in justice, equality, and inclusive development, he champions initiatives that promote youth empowerment, social cohesion, and sustainable progress in the Sidama Region.\n\nThrough his work, he continues to inspire, support, and guide the next generation of leaders, making a lasting impact on both the local community and the broader national landscape.",
+      email: "bereket.beyene@sryc.org",
+      phone: "+251 900 000 009"
     },
     // Vice President
     {
